@@ -14,5 +14,5 @@ def details(request, hotel_id):
 #    return HttpResponse("Hello, world from hotels.")
 
 def new(request):
-    return render_to_response('hotels/hotels_ details.html')
+    return render_to_response('hotels/hotels_details.html')
 

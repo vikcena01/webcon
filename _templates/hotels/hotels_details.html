@@ -1,0 +1,56 @@
+{% extends "hotels/hotels_base.html" %}
+
+{% block content %}
+<form action="" method="post">
+<fieldset class="hotel">
+<legend>Nowy hotel</legend>
+
+<label for="id_name">Nazwa:</label><br>
+<input type="text" name="name" id="id_name" class="input_standard input_width_big" value="{{ hotel.name }}">
+
+<div class="form_spacer"></div>
+
+<label for="id_standard">Standard:</label><br>
+<select name="standard" id="id_standard">
+<option value="1">*</option>
+<option value="2">**</option>
+<option value="3">***</option>
+<option value="4">****</option>
+<option value="5">*****</option>
+</select>
+
+<div class="form_spacer"></div>
+
+<label for="id_city">Miasto:</label><br>
+<input type="text" name="city" id="id_city" class="input_standard width_big" value="{{ hotel.city }}">
+
+<div class="form_spacer"></div>
+
+<label for="id_address">Adres:</label><br>
+<input type="text" name="address" id="id_address" class="input_standard width_huge" value="{{ hotel.address }}">
+
+<div class="form_spacer"></div>
+
+<label for="id_country">Kraj:</label><br>
+<select name="country" id="id_country">
+<option value="1">Arabia</option>
+<option value="2">Polska</option>
+<option value="3">USA</option>
+<option value="4">Niemcy</option>
+</select>
+
+<div class="form_spacer"></div>
+
+<label for="id_desc">Opis:</label><br>
+<textarea name="desc" id="id_desc" class="width_huge description">{{ hotel.description }}</textarea>
+
+<div class="form_spacer"></div>
+
+<div class="button_panel">
+<input type="submit" class="button_submit" value="Zapisz" /> lub <a href="" class="nav">Anuluj</a>
+</div>
+
+</fieldset>
+</form>
+
+{% endblock %}

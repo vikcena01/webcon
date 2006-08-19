@@ -1,0 +1,187 @@
+
+body {
+	margin: 10px;
+	background-color: white;
+	color: black;
+
+	font-family: Tahoma, Arial;
+	font-size: 9pt;
+}
+
+form {
+  margin: 0; padding: 0;
+}
+
+ol, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border: none;
+}
+
+h1 {
+	font-family: 'Trebuchet MS', Tahoma, Arial;
+	font-size: 30pt;
+	font-style: italic;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+#page_head {
+	background-color: #99AABB;
+	width: 100%;
+	font-size: 11pt;
+	text-align: center;
+	color: white;
+	padding: 10px;
+	font-style: italic;
+	font-weight: bold;
+}
+
+
+#page_foot {
+	background-color: #CCBBAA;
+	height: 50px;
+	width: 100%;
+}
+
+.input_standard {
+	color: black;
+	background-color: white;
+	border: 1px solid #8FB300;
+	padding: 2px;
+}
+
+.input_login {
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.button_submit {
+/*	background-color: #99AABB;*/
+	background-color: 	#B37D00;
+	color: white;
+	font-weight: bold;
+	border: 1px solid #935D00;
+
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+div.form {
+	border: 0px;
+	padding: 15px;
+	background-color: #FFFFCC;
+}
+
+div.form_spacer {
+	height: 10px;
+}
+
+div.button_panel {
+/*	background-color: red;
+	width: 100%;*/
+	border-top: 1px dotted #8FB300;
+	padding: 10px 0px 0px 0px;
+	margin-top: 10px;
+	text-align: right;
+}
+
+a {
+	text-decoration: underline;
+}
+
+a:link { color: black; }
+a:visited { color: black; }
+a:hover {
+	color: #fff;
+	background-color: black;
+	text-decoration: none;
+}
+
+a.nav {
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+a.nav:link, a.nav:visited {
+  color: #668866;
+}
+
+a.nav:hover { color: #fff; background-color: #668866; }
+
+legend {
+	border: 1px solid #8FB300;
+	padding: 3px 5px 3px 5px;
+	font-weight: bold;
+	color: white;
+/*	background-color: #8FB300;*/
+	background-color: #668866;
+	font-style: italic;
+}
+
+fieldset {
+	margin-top: 10px;
+	padding-top: 15px;
+	border: 1px solid #8FB300;
+	background-color: #F2FFBF;
+}
+
+fieldset.login {
+	width: 180px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.width_normal {
+	width: 120px;
+}
+
+.width_big {
+	width: 200px;
+}
+
+.width_huge {
+	width: 300px;
+}
+
+.width_small {
+	width: 80px;
+}
+
+.width_tiny {
+	width: 30px;
+}
+
+fieldset.hotel {
+	width: 320px;
+/*	margin-left: auto;
+	margin-right: auto;*/
+}
+
+label {
+}
+
+textarea {
+	font-family: Tahoma, Arial;
+	font-size: 9pt;
+	border: 1px solid #8FB300;
+}
+
+textarea.description {
+	height: 100px;
+}
+
+
+select {
+	color: black;
+	background-color: white;
+	border: 1px solid #8FB300;
+/*	padding: 2px;*/
+}

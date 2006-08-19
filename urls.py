@@ -6,6 +6,8 @@ urlpatterns = patterns('',
     
     (r'^hotels/', include('webcon.hotels.urls')),
     (r'^m/(.*)$', 'django.views.static.serve', {'document_root': '/home/webcon/_media', 'show_indexes': True}),
+    (r'^login/?$', 'webcon.auth.views.login'),
+    (r'^logout/?$', 'webcon.auth.views.logout'),
     # Uncomment this for admin:
 #     (r'^admin/', include('django.contrib.admin.urls')),
 )

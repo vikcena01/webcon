@@ -1,6 +1,6 @@
 
 body {
-	margin: 10px;
+	margin: 0 0 0 0;
 	background-color: white;
 	color: black;
 
@@ -21,25 +21,39 @@ img {
   border: none;
 }
 
-h1 {
+span.title {
 	font-family: 'Trebuchet MS', Tahoma, Arial;
 	font-size: 30pt;
 	font-style: italic;
-	margin-bottom: 10px;
-	margin-top: 10px;
+}
+
+span.title_small {
+	font-family: 'Trebuchet MS', Tahoma, Arial;
 }
 
 #page_head {
 	background-color: #99AABB;
-	width: 100%;
+	/*width: 100%;*/
 	font-size: 11pt;
-	text-align: center;
+	/*text-align: center;*/
 	color: white;
-	padding: 10px;
+	padding: 5px;
 	font-style: italic;
 	font-weight: bold;
+	/*border-bottom: 1px solid black;*/
 }
 
+#page_menu {
+	background-color: #99AABB;
+	/*padding: 2px;*/
+	padding-left: 4px;
+
+}
+
+
+#page_content {
+	margin: 15px;
+}
 
 #page_foot {
 	background-color: #CCBBAA;
@@ -185,3 +199,51 @@ select {
 	border: 1px solid #8FB300;
 /*	padding: 2px;*/
 }
+
+div.menuitem {
+	width: 120px;
+	/*height: 30px;*/
+	float: left;
+	text-align: center;
+	border-right: 4px solid #99AABB;
+	border-bottom: 4px solid #99AABB;
+	/*margin: 2px;*/
+}
+
+div.menuitem a:hover {
+	display: block;
+	padding: 5px 0px 5px 0px;
+	font-weight: bold;
+	background-color: black;
+	color: white;
+	text-decoration: none;
+}
+
+div.menuitem a.active {
+	display: block;
+	padding: 5px 0px 5px 0px;
+	font-weight: bold;
+	background-color: black;
+	color: white;
+	text-decoration: none;
+}
+
+div.menuitem a {
+	display: block;
+	padding: 5px 0px 5px 0px;
+	font-weight: bold;
+	background-color: #668866;
+	color: white;
+	text-decoration: none;
+}
+
+div.logininfo {
+	float: right;
+	/*text-align: right;*/
+	color: black;
+	vertical-align: bottom;
+	/*padding-bottom: 3px;*/
+	padding-right: 10px;
+	padding-top: 9px;
+}
+

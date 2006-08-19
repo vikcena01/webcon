@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block menu %}
+<div id="page_menu">
+<div class="menuitem"><a class="{% block menu_conferences %}{% endblock %}" href="/conferences/">Konferencje</a></div>
+<div class="menuitem"><a class="{% block menu_hotels %}{% endblock %}" href="/hotels/">Hotele</a></div>
+<div class="menuitem"><a class="{% block menu_admins %}{% endblock %}" href="/admins/">Administratorzy</a></div>
+<div class="logininfo">zalogowany u¿ytkownik: <b>kill</b> | <a href="/logout/" class="nav">wyloguj</a></div> 
+<br/>&nbsp;
+</div>
+<br/>
+{% endblock %}

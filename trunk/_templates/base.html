@@ -12,13 +12,12 @@
 <body>
 
 <div id="page_head">
-<h1>&lt;WebCon</h1>
-Webowy System Konferencyjny
+<span class="title">..:WebCon:..</span> <span class="title_small">Webowy System Konferencyjny</span>
 </div>
+{% block menu %}{% endblock %}
 
-<br/><br/>
-
+<div id="page_content">
 {% block content %}Difoltowa zawartosc, nigdy nie powinna sie pokazac!{% endblock %}
-
+</div> 
 </body>
 </html>

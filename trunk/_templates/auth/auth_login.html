@@ -1,5 +1,27 @@
 {% extends "base.html" %}
 
+{% block onload %}$('id_login').focus(){% endblock %}
+
 {% block content %}
-login form ....
+
+<form action="" method="post">
+<fieldset class="login">
+<legend>Logowanie</legend>
+
+<label for="id_login">Login:</label><br>
+<input type="text" name="login" id="id_login" class="input_standard width_normal" value="{{ POST.login }}">
+
+<div class="form_spacer"></div>
+
+<label for="id_pass">Has³o:</label><br>
+<input type="password" name="pass" id="id_pass" class="input_standard width_normal" value="">
+
+<div class="button_panel">
+<input type="submit" class="button_submit" value="Zaloguj" />
+</div>
+
+</fieldset>
+</form>
+{%if error%}<div class="error"><br/>{{error}}</div>{%endif%}
+
 {% endblock %}

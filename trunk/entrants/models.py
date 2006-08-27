@@ -1,4 +1,6 @@
 from django.db import models
+from webcon.common.models import Country
+from webcon.conferences.models import Room, Extra
 
 # Create your models here.
 
@@ -27,6 +29,8 @@ class Entrant(models.Model):
     nights = models.SmallIntegerField()
     class Meta:
         db_table = 'entrant'
+    class Admin:
+        pass
 
 
 class EntrantExtra(models.Model):

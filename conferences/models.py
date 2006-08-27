@@ -1,6 +1,23 @@
 from django.db import models
+from webcon.common.models import Country, State
+from webcon.hotels.models import Hotel
 
 # Create your models here.
+
+
+class Contractor(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(maxlength=255)
+    address = models.CharField(maxlength=255)
+    city = models.CharField(maxlength=50)
+    state = models.ForeignKey(State, db_column='state')
+    country = models.ForeignKey(Country, db_column='country')
+    phone = models.CharField(maxlength=40)
+    email = models.CharField(maxlength=40)
+    account = models.CharField(maxlength=32)
+    class Meta:
+        db_table = 'contractor'
+
 
 class Conference(models.Model):
     id = models.AutoField(primary_key=True)
@@ -59,7 +76,6 @@ class Event(models.Model):
         db_table = 'event'
 
 
-
 class Extra(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(maxlength=40)
@@ -71,17 +87,3 @@ class Extra(models.Model):
     class Meta:
         db_table = 'extra'
 
-
-
-class Contractor(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(maxlength=255)
-    address = models.CharField(maxlength=255)
-    city = models.CharField(maxlength=50)
-    state = models.ForeignKey(State, db_column='state')
-    country = models.ForeignKey(Country, db_column='country')
-    phone = models.CharField(maxlength=40)
-    email = models.CharField(maxlength=40)
-    account = models.CharField(maxlength=32)
-    class Meta:
-        db_table = 'contractor'

@@ -9,12 +9,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'postgresql'           # 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
-DATABASE_NAME = 'helix_5'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'helix_5'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'pykonf'         # Not used with sqlite3.
-DATABASE_HOST = 'sql.helix.nazwa.pl'             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+from settings_db import *
 
 # Local time zone for this installation. All choices can be found here:
 # http://www.postgresql.org/docs/current/static/datetime-keywords.html#DATETIME-TIMEZONE-SET-TABLE

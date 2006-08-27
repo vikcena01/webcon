@@ -19,4 +19,4 @@ class Hotel(models.Model):
         return name + ' (' + '*' * standard + ')'
     
     def get_absolute_url(self):
-        return '/hotels/'+self.id
+        return "/hotels/%s" % self.id

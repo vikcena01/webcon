@@ -147,11 +147,6 @@ fieldset {
 	background-color: #F2FFBF;
 }
 
-fieldset.login {
-	width: 180px;
-	margin-left: auto;
-	margin-right: auto;
-}
 
 .width_normal {
 	width: 120px;
@@ -175,9 +170,15 @@ fieldset.login {
 
 fieldset.hotel {
 	width: 320px;
-/*	margin-left: auto;
-	margin-right: auto;*/
 }
+
+fieldset.login {
+	width: 120px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+}
+
 
 label {
 }
@@ -247,3 +248,8 @@ div.logininfo {
 	padding-top: 9px;
 }
 
+div.error {
+	text-align: center;
+	font-weight: bold;
+	font-style: italic;
+}

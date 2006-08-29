@@ -16,7 +16,11 @@ class Hotel(models.Model):
         db_table = 'hotel'
         
     def str(self):
-        return name + ' (' + '*' * standard + ')'
+        return self.name + ' (' + '*' * self.standard + ')'
     
     def get_absolute_url(self):
         return "/hotels/%s" % self.id
+
+    def get_name(self):
+        return self.str()
+    

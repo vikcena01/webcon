@@ -12,11 +12,9 @@
 
 <label for="id_standard">Standard:</label><br>
 <select name="standard" id="id_standard">
-<option value="1">*</option>
-<option value="2">**</option>
-<option value="3">***</option>
-<option value="4">****</option>
-<option value="5">*****</option>
+{% for standard in hotel_standards %}
+<option value="{{standard.value}}" {% ifequal standard.value hotel.standard %}selected{% endifequal %}>{{standard.stars}}</option>
+{% endfor %}
 </select>
 
 <div class="form_spacer"></div>
@@ -30,13 +28,11 @@
 <input type="text" name="address" id="id_address" class="input_standard width_huge" value="{{ hotel.address }}">
 
 <div class="form_spacer"></div>
-
 <label for="id_country">Kraj:</label><br>
 <select name="country" id="id_country">
-<option value="1">Arabia</option>
-<option value="2">Polska</option>
-<option value="3">USA</option>
-<option value="4">Niemcy</option>
+{% for country in countries %}
+<option value="{{country.id}}" {% ifequal country.id hotel.country_id %}selected{% endifequal %}>{{country.name}}</option>
+{% endfor %}
 </select>
 
 <div class="form_spacer"></div>
@@ -51,6 +47,7 @@
 </div>
 
 </fieldset>
+<input type="hidden" name="id" value="{{hotel.id}}" />
 </form>
 
 {% endblock %}

@@ -8,6 +8,7 @@
 	media="screen" />
 <script src="/m/js/webcon.js" type="text/javascript"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% block extrahead %}{% endblock %}
 </head>
 
 <body onload="{% block onload %}{% endblock %};">
@@ -15,6 +16,8 @@
 <div id="page_head"><span class="title">..:WebCon:..</span> <span
 	class="title_small">Webowy System Konferencyjny</span></div>
 {% block menu %}{% endblock %}
+{% if msg_err %}<div class="msg_err">{{msg_err}}</div>{% endif %}
+{% if msg_ok %}<div class="msg_ok">{{msg_ok}}</div>{% endif %}
 
 <div id="page_content">{% block content %}Difoltowa zawartosc,
 nigdy nie powinna sie pokazac!{% endblock %}</div>

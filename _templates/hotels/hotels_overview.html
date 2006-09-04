@@ -1,0 +1,30 @@
+{% extends "hotels/hotels_base.html" %}
+
+{% block title %}Podgl±d hotelu{% endblock %}
+{% block left_title %}Dostêpne hotele{% endblock %}
+
+{% block leftpane %}
+{% include "hotels/hotels_list.html" %}
+{% endblock %}
+
+{% block middlepane %}
+
+<h1>{{hotel.name}}</h1>
+{% for i in hotel.tmp_stars %}
+<img src="/m/gfx/star.gif" border="0" width="16" height="16" />
+{% endfor %}
+<br/>
+<br/>
+{{hotel.description|linebreaks}}
+<br/>
+<br/>
+
+<b>Lokalizacja:</b><br/>
+{{hotel.city}}<br/>
+{{hotel.address}}<br/>
+{{hotel.tmp_country}}<br/>
+
+<br/>
+<a href="/hotels/{{hotel.id}}/edit" class="nav">Edytuj</a> lub <a href="/hotels/{{hotel.id}}/del" class="nav" onclick="return confirmDelete('hotel {{hotel.name}}')">Usuñ</a>
+
+{% endblock %}

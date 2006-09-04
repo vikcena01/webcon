@@ -22,7 +22,7 @@ def login(request):
                     request.session['user_id'] = entrant.id
                     request.session['user_type'] = 'entrant'
                     request.session['user_fullname'] = entrant.firstname+' '+entrant.lastname
-                    request.session['user_email'] = entrant.email
+                    request.session['user_login'] = entrant.email
                     return HttpResponseRedirect("/entrant/summary/")
             except Entrant.DoesNotExist:
                 pass
@@ -34,6 +34,7 @@ def login(request):
                 if admin.passwd_hash == passwd_hash:
                     request.session['user_id'] = admin.id
                     request.session['user_type'] = 'admin'
+                    request.session['user_login'] = admin.login
                     if admin.role == 1:
                         request.session['user_perm'] = { 'r': True, 'w': False }
                     else:

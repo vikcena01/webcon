@@ -1,4 +1,8 @@
 
+
+/* ogolne */
+
+
 body {
 	margin: 0 0 0 0;
 	background-color: white;
@@ -21,18 +25,25 @@ img {
   border: none;
 }
 
-span.title {
-	font-family: 'Trebuchet MS', Tahoma, Arial;
-	font-size: 30pt;
-	font-style: italic;
+h1 {
+	font-family: Georgia, Times, Serif;
+	font-size: 14pt;
+	font-weight: bold;
+	color: black;
+	margin: 0 0 0 0;
 }
 
-span.title_small {
-	font-family: 'Trebuchet MS', Tahoma, Arial;
+p {
+	text-indent: 30px;
 }
+
+/* sekcje */
+
+
+/* naglowek */
 
 #page_head {
-	background-color: #99AABB;
+	background-color: #ccc;/*#99AABB;*/
 	/*width: 100%;*/
 	font-size: 11pt;
 	/*text-align: center;*/
@@ -41,19 +52,109 @@ span.title_small {
 	font-style: italic;
 	font-weight: bold;
 	/*border-bottom: 1px solid black;*/
+	margin: 0 20px 6px 20px;
+	border-bottom: 2px solid #eee;
 }
+
+span.title {
+	font-family: Georgia, Times, Serif;
+	font-size: 30pt;
+	font-style: italic;
+}
+
+span.title_small {
+	font-family: Georgia, Times, Serif;
+}
+
+
+/* menu glowne */
+
 
 #page_menu {
-	background-color: #99AABB;
+/*	background-color: #99AABB; */
 	/*padding: 2px;*/
-	padding-left: 4px;
+	padding: 2px 20px 0px 0px;
+	text-align: right;
+}
 
+#page_menu a:hover {
+	padding: 2px 2px 2px 2px;
+	font-weight: bold;
+	background-color: #ccc;
+	color: white;
+	text-decoration: none;
+}
+
+#page_menu a.active {
+	padding: 2px 2px 2px 2px;
+	font-weight: bold;
+/*	background-color: #ccc; */
+	color: black;
+	text-decoration: none;
+}
+
+#page_menu a {
+	padding: 2px 2px 2px 2px;
+	font-weight: bold;
+	color: #069;
+	text-decoration: none;
+	font-family: Georgia, Times, Serif;
+	font-size: 12pt;
 }
 
 
-#page_content {
-	margin: 15px;
+
+/* panel prawy */
+
+
+#rightpane {
+	width: 160px;
+	float: right;
+	margin: 10px 20px 0px 0px;
 }
+
+
+/* panel lewy */
+
+
+#leftpane {
+	margin: 10px 20px 0px 20px;
+	float: left;
+	/*position: absolute;*/
+	width: 160px;
+	/*left: 0px;*/
+
+}
+
+/* panel srodkowy */
+
+#middlepane {
+	margin: 10px 0px 0px 0px;
+	position: absolute;
+	left: 190px;
+	right: 190px;
+	/*float: left;*/
+}
+
+/* boxy */
+
+div.box_title {
+	background-color: #ccc;
+	color: #036;
+	font-family: Verdana, Arial, Helvetica;
+	font-weight: bold;
+	font-size: 9pt;
+	padding: 2px 2px 2px 2px;
+}
+
+div.box_content {
+	margin: 0 0 20px 0;
+	padding: 10px 10px 10px 10px;
+	background-color: #eee;
+	border-bottom: 2px solid #ccc;
+}
+
+/* inne */
 
 #page_foot {
 	background-color: #CCBBAA;
@@ -211,32 +312,6 @@ div.menuitem {
 	/*margin: 2px;*/
 }
 
-div.menuitem a:hover {
-	display: block;
-	padding: 5px 0px 5px 0px;
-	font-weight: bold;
-	background-color: black;
-	color: white;
-	text-decoration: none;
-}
-
-div.menuitem a.active {
-	display: block;
-	padding: 5px 0px 5px 0px;
-	font-weight: bold;
-	background-color: black;
-	color: white;
-	text-decoration: none;
-}
-
-div.menuitem a {
-	display: block;
-	padding: 5px 0px 5px 0px;
-	font-weight: bold;
-	background-color: #668866;
-	color: white;
-	text-decoration: none;
-}
 
 div.logininfo {
 	float: right;
@@ -266,3 +341,8 @@ div.msg_ok {
 
 div.msg_err {
 }
+
+a.bold {
+	font-weight: bold;
+}
+

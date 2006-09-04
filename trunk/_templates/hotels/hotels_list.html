@@ -1,0 +1,5 @@
+{% for h in hotels %}
+<a href="{{h.get_absolute_url}}" {% ifequal h.id hotel.id %}class="bold"{% endifequal %}>{{h.name}}</a><br/>
+{% endfor %}
+<br/>
+<a href="/hotels/new" class="nav">Dodaj</a>

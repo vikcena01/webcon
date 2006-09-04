@@ -1,7 +1,14 @@
 {% extends "hotels/hotels_base.html" %}
 
-{% block content %}
-<form action="" method="post">
+{% block title %}Edycja hotelu{% endblock %}
+{% block left_title %}Dostêpne hotele{% endblock %}
+
+{% block leftpane %}
+{% include "hotels/hotels_list.html" %}
+{% endblock %}
+
+{% block middlepane %}
+<form action="/hotels/save/" method="post">
 <fieldset class="hotel">
 <legend>Nowy hotel</legend>
 
@@ -43,7 +50,7 @@
 <div class="form_spacer"></div>
 
 <div class="button_panel">
-<input type="submit" class="button_submit" value="Zapisz" /> lub <a href="/hotels/" class="nav">Anuluj</a>
+<input type="submit" class="button_submit" value="Zapisz" /> lub <a href="/hotels/{{hotel.id}}" class="nav">Anuluj</a>
 </div>
 
 </fieldset>

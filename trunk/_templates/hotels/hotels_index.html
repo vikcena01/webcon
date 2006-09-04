@@ -1,18 +1,14 @@
 {% extends "hotels/hotels_base.html" %}
 
-{% block content %}
+{% block title %}Hotele{% endblock %}
+{% block left_title %}Dostêpne hotele{% endblock %}
 
-<ul>
-{% for hotel in hotels %}
-<li>
-<a href="{{ hotel.get_absolute_url }}">{{ hotel.name }}</a>
-</li>
-{% endfor %}
-</ul>
+{% block leftpane %}
+{% include "hotels/hotels_list.html" %}
+{% endblock %}
 
-<br/>
-<br/>
+{% block middlepane %}
 
-<a href="/hotels/new" class="nav">Dodaj nowy hotel</a>
+lalala
 
 {% endblock %}

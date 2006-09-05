@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Sysuser(models.Model):
+class Admin(models.Model):
     id = models.AutoField(primary_key=True)
     fullname = models.CharField(maxlength=64)
     login = models.CharField(maxlength=32)
@@ -11,3 +11,5 @@ class Sysuser(models.Model):
     class Meta:
         db_table = 'sysuser'
 
+    def get_absolute_url(self):
+        return "/admins/%s" % self.id

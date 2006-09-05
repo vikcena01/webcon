@@ -1,6 +1,13 @@
 {% extends "base_admin.html" %}
 
+{% block left_title %}Hotele{% endblock %}
+
 {% block menu_hotels %}active{% endblock %}
+
+{% block leftpane %}
+<a href="/hotels/" class="nav">Lista</a><br/>
+<a href="/hotels/new" class="nav">Dodaj</a><br/>
+{% endblock %}
 
 {% block middlepane %}
 hotele / base<br>

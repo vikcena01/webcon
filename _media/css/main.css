@@ -12,6 +12,7 @@ body {
 	font-size: 9pt;
 }
 
+
 form {
   margin: 0; padding: 0;
 }
@@ -176,10 +177,12 @@ div.box_content {
 
 .button_submit {
 /*	background-color: #99AABB;*/
-	background-color: 	#B37D00;
+/*	background-color: 	#B37D00;*/
+	background-color: black;
 	color: white;
 	font-weight: bold;
-	border: 1px solid #935D00;
+	/*border: 1px solid #935D00;*/
+	border: 0;
 
 	padding-left: 4px;
 	padding-right: 4px;
@@ -230,6 +233,11 @@ a.nav:link, a.nav:visited {
 }
 
 a.nav:hover { color: #fff; background-color: #668866; }
+
+#leftpane a.active {
+	font-weight: bold;
+}
+
 
 legend {
 	border: 1px solid #8FB300;
@@ -288,10 +296,13 @@ textarea {
 	font-family: Tahoma, Arial;
 	font-size: 9pt;
 	border: 1px solid #8FB300;
+	padding: 3px;
 }
 
 textarea.description {
-	height: 100px;
+	height: 200px;
+	width: 450px;
+	
 }
 
 

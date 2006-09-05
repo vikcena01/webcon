@@ -18,14 +18,14 @@
 {% block menu %}{% endblock %}
 
 <div id="leftpane">
-<div class="box_title">{% block left_title %}Lista....{% endblock %}</div>
+<div class="box_title">&raquo; {% block left_title %}Lista....{% endblock %}</div>
 <div class="box_content">
 {% block leftpane %}{% endblock %}
 </div>
 </div>
 
 <div id="middlepane">
-<div class="box_title">{% block title %}Zawartosc....{% endblock %}</div>
+<div class="box_title">&raquo; {% block title %}...{% endblock %}</div>
 <div class="box_content">
 {% if msg_err %}<div class="msg_err">{{msg_err}}</div>{% endif %}
 {% if msg_ok %}<div class="msg_ok">{{msg_ok}}</div>{% endif %}
@@ -36,7 +36,7 @@ nigdy nie powinna sie pokazac!{% endblock %}
 </div>
 
 <div id="rightpane">
-<div class="box_title">Konto</div>
+<div class="box_title">&raquo; Konto</div>
 <div class="box_content">
 {% if request.session.user_id %}
 <b>{{ request.session.user_fullname }} (<i>{{ request.session.user_login }}</i>)</b><br/>

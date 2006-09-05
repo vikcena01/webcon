@@ -1,0 +1,22 @@
+{% extends "admins/admins_base.html" %}
+
+{% block title %}Podgl±d: {{admin.login}}{% endblock %}
+
+{% block middlepane %}
+
+<h1>{{admin.login}}</h1>
+<br/>
+<br/>
+{{hotel.description|linebreaks}}
+<br/>
+<br/>
+
+<b>Lokalizacja:</b><br/>
+{{hotel.city}}<br/>
+{{hotel.address}}<br/>
+{{hotel.tmp_country}}<br/>
+
+<br/>
+<a href="/admins/{{admin.id}}/edit" class="nav">Edytuj</a> lub <a href="/admins/{{admin.id}}/del" class="nav" onclick="return confirmDelete('administratora {{admin.login}}')">Usuñ</a>
+
+{% endblock %}

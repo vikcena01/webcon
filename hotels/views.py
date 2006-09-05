@@ -18,6 +18,9 @@ HOTEL_STANDARDS = [
 @admin_logged
 def index(request):
     hotels = Hotel.objects.all().order_by('name')
+    countries = Country.objects.order_by('name')
+    for h in hotels:
+        h.tmp_country = [c.name for c in countries if c.id == h.country_id][0]
     vars = {'hotels': hotels}
     return render('hotels/hotels_index.html', request, vars)
 

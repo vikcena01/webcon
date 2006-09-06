@@ -4,17 +4,13 @@
 
 {% block middlepane %}
 
-<h1>{{user.login}}</h1>
+<h1>{{user.fullname}}</h1>
 <br/>
+{{user.tmp_role}}<br/>
+Login: {{user.login}}<br/>
 <br/>
-{{hotel.description|linebreaks}}
+Ostatnie logowanie: {{user.last_login|date:"jS F Y H:i"|default:"brak"}}<br/>
 <br/>
-<br/>
-
-<b>Lokalizacja:</b><br/>
-{{hotel.city}}<br/>
-{{hotel.address}}<br/>
-{{hotel.tmp_country}}<br/>
 
 <br/>
 <a href="/users/{{user.id}}/edit" class="nav">Edytuj</a> lub <a href="/users/{{user.id}}/del" class="nav" onclick="return confirmDelete('u¿ytkownika {{user.login}}')">Usuñ</a>

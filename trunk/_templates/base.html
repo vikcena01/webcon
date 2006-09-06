@@ -41,6 +41,8 @@ nigdy nie powinna sie pokazac!{% endblock %}
 {% if request.session.user_id %}
 <b>{{ request.session.user_fullname }} (<i>{{ request.session.user_login }}</i>)</b><br/>
 <br/>
+Ostatnie logowanie: {{request.session.user_last_login|date:"jS F Y H:i"|default:"brak"}}<br/>
+<br/>
 <a href="/logout/" class="nav">wyloguj</a>
 {% else %}
 <form action="/login/" method="post">

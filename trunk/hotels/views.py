@@ -3,7 +3,7 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from webcon.hotels.models import Hotel
 from webcon.common.models import Country
-from webcon.auth.decorators import admin_logged
+from webcon.users.decorators import admin_logged, user_logged
 from webcon.common.helpers import render
 from django.http import HttpResponseRedirect
 
@@ -15,7 +15,7 @@ HOTEL_STANDARDS = [
    {'value':5, 'stars':'*****'}
 ]
 
-@admin_logged
+@user_logged
 def index(request):
     hotels = Hotel.objects.all().order_by('name')
     countries = Country.objects.order_by('name')
@@ -25,7 +25,7 @@ def index(request):
     return render('hotels/hotels_index.html', request, vars)
 
 
-@admin_logged
+@user_logged
 def overview(request, hotel_id):
     vars = {}
 #    vars['hotel_standards'] = HOTEL_STANDARDS

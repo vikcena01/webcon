@@ -3,38 +3,41 @@
 {% block title %}{% if user %}Edycja: {{user.login}}{% else %}Nowy useristrator{% endif %}{% endblock %}
 
 {% block middlepane %}
-<form action="/hotels/save/" method="post">
+<form action="/users/save/" method="post">
 <h1>{{user.login}}</h1>
 <br/>
-<label for="id_name">Nazwa:</label><br>
-<input type="text" name="name" id="id_name" class="input_standard input_width_big" value="{{ hotel.name }}">
+<label for="id_login">Login:</label><br>
+<input type="text" name="login" id="id_login" class="input_standard input_width_big" value="{{ user.login }}">
 
 <div class="form_spacer"></div>
 
-<label for="id_standard">Standard:</label><br>
-<select name="standard" id="id_standard">
-{% for standard in hotel_standards %}
-<option value="{{standard.value}}" {% ifequal standard.value hotel.standard %}selected{% endifequal %}>{{standard.stars}}</option>
-{% endfor %}
+<label for="id_fullname">Pe軟a nazwa (np. Imie Nazwisko):</label><br>
+<input type="text" name="fullname" id="id_fullname" class="input_standard input_width_big" value="{{ user.fullname }}">
+
+<div class="form_spacer"></div>
+
+<label for="id_role">Typ u篡tkownika:</label><br>
+<select name="role" id="id_role">
+<option value="1" {% ifequal user.role 1 %}selected{% endifequal %}>Zwyk造</option>
+<option value="2" {% ifequal user.role 2 %}selected{% endifequal %}>Administrator</option>
 </select>
 
 <div class="form_spacer"></div>
 
-<label for="id_city">Miasto:</label><br>
-<input type="text" name="city" id="id_city" class="input_standard width_big" value="{{ hotel.city }}">
+{% if user %}
+<br/>
+Wype軟ij poni窺ze pola tylko wtedy gdy chcesz zmienic has這!<br/>
+<br/>
+{% endif %}
+
+<label for="id_pass1">Has這:</label><br>
+<input type="password" name="pass1" id="id_pass1" class="input_standard input_width_big" value="">
+&nbsp; <a href="#" onclick="genPass(); return false;" class="nav">Generuj</a> &nbsp; <span id="id_gen_pass"></span>
 
 <div class="form_spacer"></div>
 
-<label for="id_address">Adres:</label><br>
-<input type="text" name="address" id="id_address" class="input_standard width_huge" value="{{ hotel.address }}">
-
-<div class="form_spacer"></div>
-<label for="id_country">Kraj:</label><br>
-<select name="country" id="id_country">
-{% for country in countries %}
-<option value="{{country.id}}" {% ifequal country.id hotel.country_id %}selected{% endifequal %}>{{country.name}}</option>
-{% endfor %}
-</select>
+<label for="id_pass2">Has這 powt鏎zone:</label><br>
+<input type="password" name="pass2" id="id_pass2" class="input_standard input_width_big" value="">
 
 <div class="form_spacer"></div>
 

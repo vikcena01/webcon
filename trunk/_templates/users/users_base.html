@@ -1,12 +1,12 @@
-{% extends "base_admin.html" %}
+{% extends "base_user.html" %}
 
-{% block left_title %}Administratorzy{% endblock %}
+{% block left_title %}U¿ytkownicy{% endblock %}
 
-{% block menu_admins %}active{% endblock %}
+{% block menu_users %}active{% endblock %}
 
 {% block leftpane %}
-<a href="/admins/" class="nav">Lista</a><br/>
-<a href="/admins/new" class="nav">Dodaj</a><br/>
+<a href="/users/" class="nav">Lista</a><br/>
+<a href="/users/new" class="nav">Dodaj</a><br/>
 {% endblock %}
 
 {% block middlepane %}

@@ -1,0 +1,22 @@
+{% extends "users/users_base.html" %}
+
+{% block title %}Podgl±d: {{user.login}}{% endblock %}
+
+{% block middlepane %}
+
+<h1>{{user.login}}</h1>
+<br/>
+<br/>
+{{hotel.description|linebreaks}}
+<br/>
+<br/>
+
+<b>Lokalizacja:</b><br/>
+{{hotel.city}}<br/>
+{{hotel.address}}<br/>
+{{hotel.tmp_country}}<br/>
+
+<br/>
+<a href="/users/{{user.id}}/edit" class="nav">Edytuj</a> lub <a href="/users/{{user.id}}/del" class="nav" onclick="return confirmDelete('u¿ytkownika {{user.login}}')">Usuñ</a>
+
+{% endblock %}

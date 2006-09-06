@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block menu %}
+<div id="page_menu">
+<a class="{% block menu_conferences %}{% endblock %}" href="/conferences/">konferencje</a> |
+<a class="{% block menu_hotels %}{% endblock %}" href="/hotels/">hotele</a> 
+{% if request.session.user_perm.w %}| <a class="{% block menu_admins %}{% endblock %}" href="/admins/">administratorzy</a>{% endif %}
+
+</div>
+
+{% endblock %}

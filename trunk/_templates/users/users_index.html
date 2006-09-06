@@ -1,13 +1,13 @@
-{% extends "admins/admins_base.html" %}
+{% extends "users/users_base.html" %}
 
 {% block title %}Lista{% endblock %}
 
 {% block middlepane %}
 
-{% for a in admins %}
+{% for a in users %}
 <a href="{{a.get_absolute_url}}">{{a.fullname}} - {{a.login}}</a><br/>
 {% endfor %}
 <br/>
-<a href="/admins/new" class="nav">Dodaj</a>
+<a href="/users/new" class="nav">Dodaj</a>
 
 {% endblock %}

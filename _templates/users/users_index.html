@@ -1,12 +1,21 @@
 {% extends "users/users_base.html" %}
 
-{% block title %}Lista{% endblock %}
+{% block title %}Lista u¿ytkowników{% endblock %}
 
 {% block middlepane %}
 
+<table class="list">
+<tr><th>Lp.</th><th>Login</th><th>Imiê, Nazwisko</th></tr>
 {% for a in users %}
-<a href="{{a.get_absolute_url}}">{{a.fullname}} - {{a.login}}</a><br/>
+<tr>
+<td style="text-align: right;">{{forloop.counter}}</td>
+<td>
+<a href="{{a.get_absolute_url}}">{{a.login}}</a>
+</td>
+<td>{{a.fullname}}</td>
+</tr>
 {% endfor %}
+</table>
 <br/>
 <a href="/users/new" class="nav">Dodaj</a>
 

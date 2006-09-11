@@ -140,8 +140,10 @@ span.title_small {
 /* boxy */
 
 div.box_title {
-	background-color: #ccc;
-	color: #036;
+/*	background-color: #ccc;
+	color: #036;*/
+	background-color: black;
+	color: white;
 	font-family: Verdana, Arial, Helvetica;
 	font-weight: bold;
 	font-size: 9pt;
@@ -216,8 +218,8 @@ a {
 a:link { color: black; }
 a:visited { color: black; }
 a:hover {
-	color: #fff;
-	background-color: black;
+/*	color: #fff;
+	background-color: black;*/
 	text-decoration: none;
 }
 
@@ -355,5 +357,40 @@ div.msg_err {
 
 a.bold {
 	font-weight: bold;
+}
+
+
+
+/* tabelki */
+
+table.list {
+	border: 1px solid #ccc;
+	border-spacing: 0;
+	
+}
+
+table.list th {
+	background-color: #ccc;
+	text-align: center;
+	
+	font-family: Verdana, Arial, Helvetica;
+	font-weight: bold;
+	font-size: 9pt;
+	padding: 3px 8px 3px 8px;
+}
+
+table.list td {
+	border: 1px solid #ccc;
+	padding: 2px;
+	/* background-color: white; */
+	padding: 3px 8px 3px 8px;
+}
+
+table.list tr {
+	background-color: white;
+}
+	
+table.list tr:hover {
+	background-color: #eee;
 }
 

@@ -1,13 +1,27 @@
 {% extends "hotels/hotels_base.html" %}
 
-{% block title %}Lista{% endblock %}
+{% block title %}Lista hoteli{% endblock %}
 
 
 {% block middlepane %}
 
+<table class="list">
+<tr><th>Lp.</th><th>Nazwa</th><th>Standard</th><th>Po³o¿enie</th></tr>
 {% for h in hotels %}
-<a href="{{h.get_absolute_url}}">{{h.name}} - {{h.city}}, {{h.tmp_country}}</a><br/>
+<tr>
+<td style="text-align: right;">{{forloop.counter}}</td>
+<td>
+<a href="{{h.get_absolute_url}}">{{h.name}}</a>
+</td>
+<td>
+{% for i in h.tmp_stars %}
+<img src="/m/gfx/star_small.gif" border="0" width="8" height="8" />
 {% endfor %}
+</td>
+<td>{{h.address.city}}, {{h.address.country.name}}</td>
+</tr>
+{% endfor %}
+</table>
 <br/>
 <a href="/hotels/new" class="nav">Dodaj</a>
 

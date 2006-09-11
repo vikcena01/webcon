@@ -1,6 +1,6 @@
 from django.db import models
 from webcon.common.models import Country
-from webcon.conferences.models import Room, Extra
+from webcon.confs.models import Room, Extra
 
 # Create your models here.
 

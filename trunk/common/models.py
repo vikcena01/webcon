@@ -14,3 +14,13 @@ class State(models.Model):
     name = models.CharField(maxlength=50)
     class Meta:
         db_table = 'states'
+
+class Address(models.Model):
+    id = models.AutoField(primary_key=True)
+    address = models.CharField(maxlength=256)
+    city = models.CharField(maxlength=64)
+    country = models.ForeignKey(Country)
+
+    class Meta:
+        db_table = 'address'
+

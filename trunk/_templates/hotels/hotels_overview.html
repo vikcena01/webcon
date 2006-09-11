@@ -15,11 +15,13 @@
 <br/>
 
 <b>Lokalizacja:</b><br/>
-{{hotel.city}}<br/>
-{{hotel.address}}<br/>
-{{hotel.tmp_country}}<br/>
+&nbsp;&nbsp;{{hotel.address.city}}<br/>
+&nbsp;&nbsp;{{hotel.address.address}}<br/>
+&nbsp;&nbsp;{{hotel.address.country.name}}<br/>
 
 <br/>
-<a href="/hotels/{{hotel.id}}/edit" class="nav">Edytuj</a> lub <a href="/hotels/{{hotel.id}}/del" class="nav" onclick="return confirmDelete('hotel {{hotel.name}}')">Usuñ</a>
-
+<a href="/hotels/{{hotel.id}}/edit" style="float: left" class="nav">Edytuj</a> 
+<a href="/hotels/{{hotel.id}}/del" style="float: left" class="nav" onclick="return confirmDelete('hotel {{hotel.name}}')">Usuñ</a>
+<a href="/hotels/" class="nav" style="float: right;">Wróæ</a>
+<br/>
 {% endblock %}

@@ -2,7 +2,7 @@
 
 from django.shortcuts import render_to_response, get_object_or_404
 from webcon.hotels.models import Hotel
-from webcon.common.models import Country
+from webcon.common.models import Country, Address
 from webcon.users.decorators import admin_logged, user_logged
 from webcon.common.helpers import render
 from django.http import HttpResponseRedirect
@@ -20,7 +20,7 @@ def index(request):
     hotels = Hotel.objects.all().order_by('name')
     countries = Country.objects.order_by('name')
     for h in hotels:
-        h.tmp_country = [c.name for c in countries if c.id == h.country_id][0]
+        h.tmp_stars = range(h.standard)
     vars = {'hotels': hotels}
     return render('hotels/hotels_index.html', request, vars)
 
@@ -28,11 +28,8 @@ def index(request):
 @user_logged
 def overview(request, hotel_id):
     vars = {}
-#    vars['hotel_standards'] = HOTEL_STANDARDS
-#    vars['countries'] = 
     hotel = get_object_or_404(Hotel, pk=hotel_id)
     hotel.tmp_stars = range(hotel.standard)
-    hotel.tmp_country = [c.name for c in Country.objects.order_by('name') if c.id == hotel.country_id][0]
     vars['hotel'] = hotel
     vars['hotels'] = Hotel.objects.all().order_by('name')
    
@@ -62,13 +59,16 @@ def save(request):
         else:
             hotel = Hotel()
 #        return HttpResponse(str(request.POST))
+        hotel.address.city = request.POST['city']
+        hotel.address.address = request.POST['address']
+        hotel.address.country_id = request.POST['country']
+        hotel.address.save()
+
         hotel.name = request.POST['name']
         hotel.standard = request.POST['standard']
-        hotel.city = request.POST['city']
-        hotel.address = request.POST['address']
-        hotel.country_id = request.POST['country']
         hotel.description = request.POST['desc']
         hotel.save()
+        
         return HttpResponseRedirect("/hotels/%s" % hotel.id)
     else:
         return HttpResponseRedirect("/hotels/")

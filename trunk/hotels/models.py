@@ -1,5 +1,5 @@
 from django.db import models
-from webcon.common.models import Country
+from webcon.common.models import Country, Address
 
 # Create your models here.
 
@@ -8,9 +8,9 @@ class Hotel(models.Model):
     name = models.CharField(maxlength=64)
     description = models.TextField()
 #    type = models.SmallIntegerField()
-    country = models.ForeignKey(Country, db_column='country')
-    city = models.CharField(maxlength=64)
-    address = models.CharField(maxlength=256)
+    address = models.ForeignKey(Address)
+    # city = models.CharField(maxlength=64)
+    # address = models.CharField(maxlength=256)
     standard = models.SmallIntegerField()
     class Meta:
         db_table = 'hotel'

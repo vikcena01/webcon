@@ -13,6 +13,8 @@ Ostatnie logowanie: {{user.last_login|date:"jS F Y H:i"|default:"brak"}}<br/>
 <br/>
 
 <br/>
-<a href="/users/{{user.id}}/edit" class="nav">Edytuj</a> lub <a href="/users/{{user.id}}/del" class="nav" onclick="return confirmDelete('u¿ytkownika {{user.login}}')">Usuñ</a>
-
+<a href="/users/{{user.id}}/edit" style="float: left" class="nav">Edytuj</a> 
+<a href="/users/{{user.id}}/del" style="float: left" class="nav" onclick="return confirmDelete('u¿ytkownika {{user.login}}')">Usuñ</a>
+<a href="/users/" class="nav" style="float: right;">Wróæ</a>
+<br/>
 {% endblock %}

@@ -21,18 +21,18 @@
 <div class="form_spacer"></div>
 
 <label for="id_city">Miasto:</label><br>
-<input type="text" name="city" id="id_city" class="input_standard width_big" value="{{ hotel.city }}">
+<input type="text" name="city" id="id_city" class="input_standard width_big" value="{{ hotel.address.city }}">
 
 <div class="form_spacer"></div>
 
 <label for="id_address">Adres:</label><br>
-<input type="text" name="address" id="id_address" class="input_standard width_huge" value="{{ hotel.address }}">
+<input type="text" name="address" id="id_address" class="input_standard width_huge" value="{{ hotel.address.address }}">
 
 <div class="form_spacer"></div>
 <label for="id_country">Kraj:</label><br>
 <select name="country" id="id_country">
 {% for country in countries %}
-<option value="{{country.id}}" {% ifequal country.id hotel.country_id %}selected{% endifequal %}>{{country.name}}</option>
+<option value="{{country.id}}" {% ifequal country.id hotel.address.country_id %}selected{% endifequal %}>{{country.name}}</option>
 {% endfor %}
 </select>
 

@@ -6,14 +6,14 @@ class Country(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(maxlength=60)
     class Meta:
-        db_table = 'countries'
+        db_table = 'country'
 
 
-class State(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(maxlength=50)
-    class Meta:
-        db_table = 'states'
+#class State(models.Model):
+#    id = models.AutoField(primary_key=True)
+#    name = models.CharField(maxlength=50)
+#    class Meta:
+#        db_table = 'states'
 
 class Address(models.Model):
     id = models.AutoField(primary_key=True)

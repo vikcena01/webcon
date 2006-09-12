@@ -1,5 +1,5 @@
 from django.db import models
-from webcon.common.models import Country, State, Address
+from webcon.common.models import Country, Address
 from webcon.hotels.models import Hotel
 
 # Create your models here.

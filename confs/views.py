@@ -1,5 +1,5 @@
 # Create your views here.
-from webcon.users.decorators import admin_logged, user_logged
+from webcon.admins.decorators import admin_logged, user_logged
 from webcon.confs.models import Conference
 from webcon.common.helpers import render
 

@@ -1,0 +1,21 @@
+{% extends "admins/admins_base.html" %}
+
+{% block title %}Podgl±d: {{admin.login}}{% endblock %}
+
+{% block middlepane %}
+
+<h1>{{admin.fullname}}</h1>
+<br/>
+{{admin.tmp_role}}<br/>
+Login: {{admin.login}}<br/>
+<br/>
+Ostatnie udane logowanie: {{admin.last_good_login|date:"jS F Y H:i"|default:"brak"}}<br/>
+Ostatnie nieudane logowanie: {{admin.last_bad_login|date:"jS F Y H:i"|default:"brak"}}<br/>
+<br/>
+
+<br/>
+<a href="/admins/{{admin.id}}/edit" style="float: left" class="nav">Edytuj</a> 
+<a href="/admins/{{admin.id}}/del" style="float: left" class="nav" onclick="return confirmDelete('administratora {{admin.login}}')">Usuñ</a>
+<a href="/admins/" class="nav" style="float: right;">Wróæ</a>
+<br/>
+{% endblock %}

@@ -1,12 +1,24 @@
 from random import random
 from webcon.common.models import Country, Address
+from datetime import *
 
 hotel_names = file('hotele-ok.txt').read().split("\n")
+hotel_names = [x for x in hotel_names if x]
+
 streets = file('ulice-ok.txt').read().split("\n")
+streets = [x for x in streets if x]
+
 cities = file('miasta-ok.txt').read().split("\n")
+cities = [x for x in cities if x]
+
 firstnames = file('imiona-ok.txt').read().split("\n")
+firstnames = [x for x in firstnames if x]
+
 lastnames = file('nazwiska-ok.txt').read().split("\n")
+lastnames = [x for x in lastnames if x]
+
 conf_names = file('konferencje-ok.txt').read().split("\n")
+conf_names = [x for x in conf_names if x]
 
 countries = Country.objects.all()
 
@@ -45,3 +57,41 @@ def get_address():
     a.country = countries[(int)(random()*len(countries))]
     a.save()
     return a
+
+def get_phone():
+    phone = "";
+    for i in range(9):
+        phone += "%i" % (int)(random()*10)    
+    return phone
+
+def get_email():
+    return firstnames[(int)(random() * len(firstnames))].lower()+"@"+hotel_names[(int)(random() * len(hotel_names))].lower()[:6].strip()+".pl"
+
+def get_account():
+    account = "";
+    for i in range(4):
+        account += "%i" % (int)(random()*10)    
+    account += "-"
+    for i in range(4):
+        account += "%i" % (int)(random()*10)    
+    account += "-"
+    for i in range(4):
+        account += "%i" % (int)(random()*10)    
+    account += "-"
+    for i in range(4):
+        account += "%i" % (int)(random()*10)    
+    return account
+   
+def get_period():
+    start_year = 2006
+    start_month = 5+(int)(random()*7)
+    start_day = 1+(int)(random()*30)
+    start_hour = 10
+    
+    start_date = datetime(start_year, start_month, start_day, start_hour)
+    nights = 1+(int)(random()*4)
+    end_date = start_date + timedelta(nights)
+    return (start_date, end_date, nights)
+
+def get_price():
+    return 10*(int)(random()*10)

@@ -7,7 +7,7 @@ class Hotel(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(maxlength=64)
     description = models.TextField()
-#    type = models.SmallIntegerField()
+    type = models.SmallIntegerField()
     address = models.ForeignKey(Address)
     # city = models.CharField(maxlength=64)
     # address = models.CharField(maxlength=256)

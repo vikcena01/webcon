@@ -1,0 +1,23 @@
+{% extends "contr/contr_base.html" %}
+
+{% block title %}Lista kontrahentów{% endblock %}
+
+{% block middlepane %}
+
+<table class="list">
+<tr><th>Lp.</th><th>Kontahent</th><th>Telefon</th><th>E-mail</th></tr>
+{% for c in contractors %}
+<tr>
+<td style="text-align: right;">{{forloop.counter}}</td>
+<td>
+<a href="{{c.get_absolute_url}}">{{c.name}}</a>
+</td>
+<td>{{c.phone}}</td>
+<td><a href="mailto:{{c.email}}">{{c.email}}</a></td>
+</tr>
+{% endfor %}
+</table>
+<br/>
+<a href="/contr/new" class="nav">Dodaj</a>
+
+{% endblock %}

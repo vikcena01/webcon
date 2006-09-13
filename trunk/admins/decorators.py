@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect,HttpResponse
 
-def admin_logged(view_func):
+def admin_can_write(view_func):
     """
     Decorator for views that checks that the user is logged in, redirecting
     to the log-in page if necessary.
@@ -8,9 +8,9 @@ def admin_logged(view_func):
     
     def _checklogin(request, *args, **kwargs):
         try:
-            user_id = request.session['user_id']
-            user_type = request.session['user_type']
-            if user_id and user_type == 'admin':
+            admin_id = request.session['admin_id']
+            can_write = request.session['admin_can_write']
+            if admin_id and admin_can_write:
                 return view_func(request, *args, **kwargs)
             else:
                 return HttpResponse("Brak uprawnien do tej operacji!")
@@ -19,7 +19,7 @@ def admin_logged(view_func):
 
     return _checklogin
 
-def user_logged(view_func):
+def admin_can_read(view_func):
     """
     Decorator for views that checks that the user is logged in, redirecting
     to the log-in page if necessary.
@@ -27,9 +27,9 @@ def user_logged(view_func):
     
     def _checklogin(request, *args, **kwargs):
         try:
-            user_id = request.session['user_id']
-            user_type = request.session['user_type']
-            if user_id and (user_type == 'admin' or user_type == 'normal'):
+            admin_id = request.session['admin_id']
+            # admin_type = request.session['admin_type']
+            if admin_id:
                 return view_func(request, *args, **kwargs)
             else:
                 return HttpResponse("Brak uprawnien do tej operacji!")

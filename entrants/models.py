@@ -17,16 +17,22 @@ class Entrant(models.Model):
     birthdate = models.DateField()
     sex = models.CharField(maxlength=1)
     passwd_hash = models.CharField(maxlength=32)
-    conf_price = models.FloatField(max_digits=65535, decimal_places=65531)
+    # conf_price = models.FloatField(max_digits=65535, decimal_places=65531)
     registered = models.DateTimeField()
-    arrived = models.DateTimeField()
-    payment_type = models.SmallIntegerField()
-    caution = models.TextField()
-    rating = models.SmallIntegerField()
-    comment = models.TextField()
-    annotation = models.TextField()
-    room = models.ForeignKey(Room)
-    nights = models.SmallIntegerField()
+    # arrived = models.DateTimeField()
+    # payment_type = models.SmallIntegerField()
+    # caution = models.TextField()
+    # rating = models.SmallIntegerField()
+    # comment = models.TextField()
+    # annotation = models.TextField()
+    # room = models.ForeignKey(Room)
+    # nights = models.SmallIntegerField()
+    last_good_login = models.DateTimeField()
+    last_bad_login = models.DateTimeField()
+
+    def get_absolute_url(self):
+        return "/entra/%s" % self.id
+
     class Meta:
         db_table = 'entrant'
     class Admin:

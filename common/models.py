@@ -20,6 +20,7 @@ class Address(models.Model):
     address = models.CharField(maxlength=256)
     city = models.CharField(maxlength=64)
     country = models.ForeignKey(Country)
+    zipcode = models.CharField(maxlength=16)
 
     class Meta:
         db_table = 'address'

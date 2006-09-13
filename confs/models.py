@@ -1,25 +1,8 @@
 from django.db import models
-from webcon.common.models import Country, Address
+from webcon.common.models import Address
 from webcon.hotels.models import Hotel
 
 # Create your models here.
-
-
-class Contractor(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(maxlength=255)
-#    address = models.CharField(maxlength=255)
-#    city = models.CharField(maxlength=50)
-#    state = models.ForeignKey(State, db_column='state')
-#    country = models.ForeignKey(Country)
-    phone = models.CharField(maxlength=40)
-    email = models.CharField(maxlength=40)
-    account = models.CharField(maxlength=32)
-    address = models.ForeignKey(Address)
-
-    class Meta:
-        db_table = 'contractor'
-
 
 class Conference(models.Model):
     id = models.AutoField(primary_key=True)
@@ -35,7 +18,11 @@ class Conference(models.Model):
     cost = models.FloatField(max_digits=65535, decimal_places=65531)
     active = models.BooleanField()
     address = models.ForeignKey(Address)
-    
+    reg_deadline = models.DateTimeField()
+
+    def get_absolute_url(self):
+        return "/confs/%s" % self.id
+
     class Meta:
         db_table = 'conference'
 

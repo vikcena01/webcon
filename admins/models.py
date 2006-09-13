@@ -7,7 +7,7 @@ class Admin(models.Model):
     fullname = models.CharField(maxlength=64)
     login = models.CharField(maxlength=32)
     passwd_hash = models.CharField(maxlength=32)
-    role = models.SmallIntegerField()
+    can_write = models.BooleanField()
     last_good_login = models.DateTimeField()
     last_bad_login = models.DateTimeField()
     

@@ -2,8 +2,8 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 #from django.db.models.Model import DoesNotExist
+from webcon.admins.models import Admin
 from webcon.users.models import User
-from webcon.entrants.models import Entrant
 from datetime import datetime
 import md5
 
@@ -17,8 +17,8 @@ def login(request):
         if '@' in login:
             # sprobojmy zalogowac uczestnika
             try:
-                entrant = Entrant.objects.get(email__exact=login)
-                if entrant.passwd_hash == passwd_hash:
+                user = User.objects.get(email__exact=login)
+                if user.passwd_hash == passwd_hash:
                     request.session['user_id'] = entrant.id
                     request.session['user_last_login'] = entrant.last_login
                     request.session['user_type'] = 'entrant'
@@ -31,22 +31,14 @@ def login(request):
         else:
             # wiec moze admin?
             try:
-                user = User.objects.get(login__exact=login)
-                if user.passwd_hash == passwd_hash:
-                    request.session['user_id'] = user.id
-                    request.session['user_last_login'] = user.last_login
-                    request.session['user_login'] = user.login
-                    if user.role == 1:
-                        request.session['user_type'] = 'normal'
-                        request.session['user_perm'] = { 'r': True, 'w': False }
-                    else:
-                        request.session['user_type'] = 'admin'
-                        request.session['user_perm'] = { 'r': True, 'w': True }
-                    request.session['user_fullname'] = user.fullname
+                admin = Admin.objects.get(login__exact=login)
+                if admin.passwd_hash == passwd_hash:
+                    request.session['admin'] = admin
+                    request.session['user'] = admin
                     # request.session['user_email'] = entrant.email
                     # zaktualizujmy last_login
-                    user.last_login = datetime.now()
-                    user.save()
+                    admin.last_login = datetime.now()
+                    admin.save()
                     return HttpResponseRedirect("/hotels/")
                 
             except User.DoesNotExist:
@@ -61,11 +53,8 @@ def login(request):
 def logout(request):
     # blabla
     try:
-        del request.session['user_id']
-        del request.session['user_type']
-        del request.session['user_fullname']
-        del request.session['user_perm']
-        del request.session['user_email']
+        del request.session['user']
+        del request.session['admin']
     except KeyError:
         pass
     

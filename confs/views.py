@@ -1,9 +1,9 @@
 # Create your views here.
-from webcon.admins.decorators import admin_logged, user_logged
+from webcon.admins.decorators import admin_can_read, admin_can_write
 from webcon.confs.models import Conference
 from webcon.common.helpers import render
 
-@user_logged
+@admin_can_read
 def index(request):
     confs = Conference.objects.all().order_by('name')
     # countries = Country.objects.order_by('name')

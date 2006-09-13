@@ -1,0 +1,22 @@
+{% extends "users/users_base.html" %}
+
+{% block title %}Lista administratorów{% endblock %}
+
+{% block middlepane %}
+
+<table class="list">
+<tr><th>Lp.</th><th>Login</th><th>Imiê, Nazwisko</th></tr>
+{% for a in admins %}
+<tr>
+<td style="text-align: right;">{{forloop.counter}}</td>
+<td>
+<a href="{{a.get_absolute_url}}">{{a.login}}</a>
+</td>
+<td>{{a.fullname}}</td>
+</tr>
+{% endfor %}
+</table>
+<br/>
+<a href="/admins/new" class="nav">Dodaj</a>
+
+{% endblock %}

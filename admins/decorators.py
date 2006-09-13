@@ -8,9 +8,8 @@ def admin_can_write(view_func):
     
     def _checklogin(request, *args, **kwargs):
         try:
-            admin_id = request.session['admin_id']
-            can_write = request.session['admin_can_write']
-            if admin_id and admin_can_write:
+            admin = request.session['admin']
+            if admin and admin.can_write:
                 return view_func(request, *args, **kwargs)
             else:
                 return HttpResponse("Brak uprawnien do tej operacji!")
@@ -27,9 +26,9 @@ def admin_can_read(view_func):
     
     def _checklogin(request, *args, **kwargs):
         try:
-            admin_id = request.session['admin_id']
+            admin = request.session['admin']
             # admin_type = request.session['admin_type']
-            if admin_id:
+            if admin:
                 return view_func(request, *args, **kwargs)
             else:
                 return HttpResponse("Brak uprawnien do tej operacji!")

@@ -3,7 +3,7 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from webcon.hotels.models import Hotel
 from webcon.common.models import Country, Address
-from webcon.users.decorators import admin_logged, user_logged
+from webcon.admins.decorators import admin_can_read, admin_can_write
 from webcon.common.helpers import render
 from django.http import HttpResponseRedirect
 
@@ -15,7 +15,7 @@ HOTEL_STANDARDS = [
    {'value':5, 'stars':'*****'}
 ]
 
-@user_logged
+@admin_can_read
 def index(request):
     hotels = Hotel.objects.all().order_by('name')
     countries = Country.objects.order_by('name')
@@ -25,7 +25,7 @@ def index(request):
     return render('hotels/hotels_index.html', request, vars)
 
 
-@user_logged
+@admin_can_read
 def overview(request, hotel_id):
     vars = {}
     hotel = get_object_or_404(Hotel, pk=hotel_id)
@@ -36,7 +36,7 @@ def overview(request, hotel_id):
     return render('hotels/hotels_overview.html', request, vars)
 
 
-@admin_logged
+@admin_can_write
 def edit(request, hotel_id=None):
     vars = {}
     vars['hotel_standards'] = HOTEL_STANDARDS
@@ -50,7 +50,7 @@ def edit(request, hotel_id=None):
 
 
 
-@admin_logged
+@admin_can_write
 def save(request):
     if request.method == 'POST':
 #        hotel = Hotel.objects.get_or_create(id=(request.POST['id'] or 100), defaults={'id': None})[0]
@@ -74,7 +74,7 @@ def save(request):
         return HttpResponseRedirect("/hotels/")
 
 
-@admin_logged
+@admin_can_write
 def delete(request, hotel_id):
     hotel = get_object_or_404(Hotel, pk=hotel_id)
     hotel.delete()

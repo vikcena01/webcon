@@ -1,0 +1,15 @@
+{% extends "base_admin.html" %}
+
+{% block left_title %}Administratorzy{% endblock %}
+
+{% block menu_users %}active{% endblock %}
+
+{% block leftpane %}
+<a href="/admins/" class="nav">Lista</a><br/>
+<a href="/admins/new" class="nav">Dodaj</a><br/>
+{% endblock %}
+
+{% block middlepane %}
+admins / base<br>
+to tez raczej nie powinno sie pokazac
+{% endblock %}

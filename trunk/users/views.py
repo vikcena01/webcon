@@ -16,7 +16,7 @@ import md5
 def index(request):
     admins = Admin.objects.all().order_by('login')
     vars = {'admins': admins}
-    return render('admins/admins_index.html', request, vars)
+    return render('users/users_index.html', request, vars)
 
 
 @admin_can_write

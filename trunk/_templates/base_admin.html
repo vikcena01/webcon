@@ -6,7 +6,7 @@
 <a class="{% block menu_conferences %}{% endblock %}" href="/confs/">konferencje</a> |
 <a class="{% block menu_users %}{% endblock %}" href="/users/">u¿ytkownicy</a> |
 <a class="{% block menu_hotels %}{% endblock %}" href="/hotels/">hotele</a> 
-{% if request.session.admin_can_write %}| <a class="{% block menu_admins %}{% endblock %}" href="/admins/">administratorzy</a>{% endif %}
+{% if request.session.admin.can_write %}| <a class="{% block menu_admins %}{% endblock %}" href="/admins/">administratorzy</a>{% endif %}
 
 </div>
 

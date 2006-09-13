@@ -1,12 +1,12 @@
-{% extends "users/users_base.html" %}
+{% extends "admins/admins_base.html" %}
 
-{% block title %}Lista u¿ytkowników{% endblock %}
+{% block title %}Lista administratorów{% endblock %}
 
 {% block middlepane %}
 
 <table class="list">
 <tr><th>Lp.</th><th>Login</th><th>Imiê, Nazwisko</th></tr>
-{% for a in users %}
+{% for a in admins %}
 <tr>
 <td style="text-align: right;">{{forloop.counter}}</td>
 <td>
@@ -17,6 +17,6 @@
 {% endfor %}
 </table>
 <br/>
-<a href="/users/new" class="nav">Dodaj</a>
+<a href="/admins/new" class="nav">Dodaj</a>
 
 {% endblock %}

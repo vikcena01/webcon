@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('webcon.users.views',
+urlpatterns = patterns('webcon.admin.users.views',
     (r'^$', 'index'),
     (r'^(?P<user_id>\d+)/?$', 'overview'),
     (r'^(?P<user_id>\d+)/del/?$', 'delete'),

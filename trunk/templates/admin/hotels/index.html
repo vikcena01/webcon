@@ -1,4 +1,4 @@
-{% extends "hotels/hotels_base.html" %}
+{% extends "admin/hotels/base.html" %}
 
 {% block title %}Lista hoteli{% endblock %}
 
@@ -11,7 +11,7 @@
 <tr>
 <td style="text-align: right;">{{forloop.counter}}</td>
 <td>
-<a href="{{h.get_absolute_url}}">{{h.name}}</a>
+<a href="{{h.get_admin_url}}">{{h.name}}</a>
 </td>
 <td>
 {% for i in h.tmp_stars %}
@@ -23,6 +23,6 @@
 {% endfor %}
 </table>
 <br/>
-<a href="/hotels/new" class="nav">Dodaj</a>
+<a href="{{basepath}}/new" class="nav">Dodaj</a>
 
 {% endblock %}

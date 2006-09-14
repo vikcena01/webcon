@@ -18,8 +18,11 @@ class Hotel(models.Model):
     def str(self):
         return self.name + ' (' + '*' * self.standard + ')'
     
-    def get_absolute_url(self):
-        return "/hotels/%s" % self.id
+    def get_admin_url(self):
+        return "/admin/hotels/%s" % self.id
+
+    def get_user_url(self):
+        return "/user/hotels/%s" % self.id
 
     def get_name(self):
         return self.str()

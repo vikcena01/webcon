@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('webcon.admin.hotels.views',
+urlpatterns = patterns('webcon.views.admin.hotels.views',
     (r'^$', 'index'),
     (r'^(?P<hotel_id>\d+)/?$', 'overview'),
     (r'^(?P<hotel_id>\d+)/del/?$', 'delete'),

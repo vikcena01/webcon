@@ -1,7 +1,7 @@
 from django.db import models
-from webcon.models.m_common import Address
-from webcon.models.m_hotels import Hotel
-from webcon.models.m_contrs import Contractor
+from webcon.models.common import Address
+from webcon.models.hotels import Hotel
+from webcon.models.contrs import Contractor
 
 # Create your models here.
 
@@ -21,8 +21,12 @@ class Conference(models.Model):
     address = models.ForeignKey(Address)
     reg_deadline = models.DateTimeField()
 
-    def get_absolute_url(self):
-        return "/confs/%s" % self.id
+    
+    def get_admin_url(self):
+        return "/admin/confs/%s" % self.id
+
+    def get_user_url(self):
+        return "/user/confs/%s" % self.id
 
     class Meta:
         db_table = 'conference'

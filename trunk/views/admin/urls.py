@@ -1,11 +1,11 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('webcon.views.admin',
-    (r'^hotels/', include('hotels.urls')),
-    (r'^admins/', include('admins.urls')),
-    (r'^users/', include('users.urls')),
-    (r'^confs/', include('views.admin.confs.u_confs')),
-    (r'^contr/', include('contr.urls')),
+    (r'^confs/', include('views.admin.confs.urls')),
+    (r'^hotels/', include('views.admin.hotels.urls')),
+    (r'^admins/', include('views.admin.admins.urls')),
+    (r'^users/', include('views.admin.users.urls')),
+    (r'^contr/', include('views.admin.contr.urls')),
 #    (r'^r/', include('django.conf.urls.shortcut')),
 
 )

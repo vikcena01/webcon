@@ -1,4 +1,4 @@
-{% extends "confs/confs_base.html" %}
+{% extends "admin/confs/base.html" %}
 
 {% block title %}Lista konferencji{% endblock %}
 
@@ -11,7 +11,7 @@
 <tr>
 <td style="text-align: right;">{{forloop.counter}}</td>
 <td>
-<a href="{{c.get_absolute_url}}">{{c.name}}</a>
+<a href="{{c.get_admin_url}}">{{c.name}}</a>
 </td>
 <td>{{c.address.city}}, {{c.address.country.name}}</td>
 <td>{{c.start_date}}</td>
@@ -20,6 +20,6 @@
 {% endfor %}
 </table>
 <br/>
-<a href="/confs/new" class="nav">Dodaj</a>
+<a href="{{basepath}}/new" class="nav">Dodaj</a>
 
 {% endblock %}

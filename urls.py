@@ -6,11 +6,12 @@ urlpatterns = patterns('',
     
     (r'^m/(.*)$', 'django.views.static.serve', {'document_root': '/home/webcon/_media', 'show_indexes': True}),
     
-    (r'^hotels/', include('webcon.admin.hotels.urls')),
-    (r'^admins/', include('webcon.admin.admins.urls')),
-    (r'^users/', include('webcon.admin.users.urls')),
-    (r'^confs/', include('webcon.admin.confs.urls')),
-    (r'^contr/', include('webcon.admin.contr.urls')),
+    (r'^admin/', include('webcon.views.admin.urls')),
+    (r'^admin/hotels/', include('webcon.admin.hotels.urls')),
+    (r'^admin/admins/', include('webcon.admin.admins.urls')),
+    (r'^admin/users/', include('webcon.admin.users.urls')),
+    (r'^admin/confs/', include('webcon.views.admin.confs.urls')),
+    (r'^admin/contr/', include('webcon.admin.contr.urls')),
 
     (r'^login/?$', 'webcon.auth.views.login'),
     (r'^logout/?$', 'webcon.auth.views.logout'),

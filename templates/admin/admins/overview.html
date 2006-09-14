@@ -1,4 +1,4 @@
-{% extends "admins/admins_base.html" %}
+{% extends "admin/admins/base.html" %}
 
 {% block title %}Podgl±d: {{admin.login}}{% endblock %}
 
@@ -14,8 +14,8 @@ Ostatnie nieudane logowanie: {{admin.last_bad_login|date:"jS F Y H:i"|default:"b
 <br/>
 
 <br/>
-<a href="/admins/{{admin.id}}/edit" style="float: left" class="nav">Edytuj</a> 
-<a href="/admins/{{admin.id}}/del" style="float: left" class="nav" onclick="return confirmDelete('administratora {{admin.login}}')">Usuñ</a>
-<a href="/admins/" class="nav" style="float: right;">Wróæ</a>
+<a href="{{basepath}}/{{admin.id}}/edit" style="float: left" class="nav">Edytuj</a> 
+<a href="{{basepath}}/{{admin.id}}/del" style="float: left" class="nav" onclick="return confirmDelete('administratora {{admin.login}}')">Usuñ</a>
+<a href="{{basepath}}/" class="nav" style="float: right;">Wróæ</a>
 <br/>
 {% endblock %}

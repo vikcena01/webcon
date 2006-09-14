@@ -1,9 +1,9 @@
 # Create your views here.
 
 from django.shortcuts import render_to_response, get_object_or_404
-from webcon.hotels.models import Hotel
-from webcon.common.models import Country, Address
-from webcon.contr.models import Contractor
+from webcon.models.hotels import Hotel
+from webcon.models.common import Country, Address
+from webcon.models.contr import Contractor
 from webcon.admins.decorators import admin_can_read, admin_can_write
 from webcon.common.helpers import render
 from django.http import HttpResponseRedirect

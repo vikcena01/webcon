@@ -12,13 +12,15 @@ import md5
 
 MODULE = 'admin'
 SUBMODULE = 'admins'
+TPLPATH = MODULE+'/'+SUBMODULE
+BASEPATH = '/'+MODULE+'/'+SUBMODULE
 
 
 @admin_can_write
 def index(request):
     admins = Admin.objects.all().order_by('login')
     vars = {'admins': admins}
-    return render(MODULE+'/'+SUBMODULE+'/index.html', request, vars)
+    return render(TPLPATH+'/index.html', request, vars)
 
 
 @admin_can_write
@@ -31,18 +33,18 @@ def overview(request, admin_id):
     vars['admin'] = admin
     # vars['admins'] = User.objects.all().order_by('login')
    
-    return render(MODULE+'/'+SUBMODULE+'/overview.html', request, vars)
+    return render(TPLPATH+'/overview.html', request, vars)
 
 
 @admin_can_write
-def edit(request, user_id=None):
+def edit(request, admin_id=None):
     vars = {}
-    vars['users'] = User.objects.all().order_by('login')
-    if user_id:
-        user = get_object_or_404(User, pk=user_id)
-        vars['user'] = user
+    # vars['users'] = User.objects.all().order_by('login')
+    if admin_id:
+        admin = get_object_or_404(Admin, pk=admin_id)
+        vars['admin'] = admin
    
-    return render(MODULE+'/'+SUBMODULE+'/edit.html', request, vars)
+    return render(TPLPATH+'/edit.html', request, vars)
 
 
 
@@ -51,25 +53,25 @@ def save(request):
     if request.method == 'POST':
 #        hotel = Hotel.objects.get_or_create(id=(request.POST['id'] or 100), defaults={'id': None})[0]
         if request.POST['id']:
-            user = get_object_or_404(User, pk=request.POST['id'])
+            admin = get_object_or_404(Admin, pk=request.POST['id'])
         else:
-            user = User()
+            admin = Admin()
 #        return HttpResponse(str(request.POST))
-        user.fullname = request.POST['fullname']
-        user.login = request.POST['login']
-        user.role = request.POST['role']
-        user.passwd_hash = passwd_hash = md5.new(request.POST['pass1']).hexdigest()
+        admin.fullname = request.POST['fullname']
+        admin.login = request.POST['login']
+        # user.role = request.POST['role']
+        admin.passwd_hash = md5.new(request.POST['pass1']).hexdigest()
         try:
-            user.save()
+            admin.save()
         except IntegrityError:
-            return HttpResponse("user o podanym loginie juz istnieje!")
-        return HttpResponseRedirect(MODULE+'/'+SUBMODULE+"/%s" % user.id)
+            return HttpResponse("admin o podanym loginie juz istnieje!")
+        return HttpResponseRedirect(BASEPATH+"/%s" % admin.id)
     else:
-        return HttpResponseRedirect(MODULE+'/'+SUBMODULE)
+        return HttpResponseRedirect(BASEPATH)
 
 
 @admin_can_write
 def delete(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     user.delete()
-    return HttpResponseRedirect(MODULE+'/'+SUBMODULE)
+    return HttpResponseRedirect(BASEPATH)

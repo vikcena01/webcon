@@ -1,9 +1,9 @@
-{% extends "admins/admins_base.html" %}
+{% extends "admin/admins/base.html" %}
 
-{% block title %}{% if user %}Edycja: {{admin.login}}{% else %}Nowy administrator{% endif %}{% endblock %}
+{% block title %}{% if admin %}Edycja: {{admin.login}}{% else %}Nowy administrator{% endif %}{% endblock %}
 
 {% block middlepane %}
-<form action="/admins/save/" method="post">
+<form action="{{basepath}}/save/" method="post">
 <h1>{{admin.login}}</h1>
 <br/>
 <label for="id_login">Login:</label><br>
@@ -16,7 +16,7 @@
 
 <div class="form_spacer"></div>
 
-<input type="checkbox" name="can_write" value="1" id="id_can_write" {{% if admin.can_write %}}checked="checked"{{% endif %}}/>&nbsp; 
+<input type="checkbox" name="can_write" value="1" id="id_can_write" {% if admin.can_write %}checked="checked"{% endif %}/>&nbsp; 
 <label for="id_can_write">Uprawniony do edycji tre¶ci</label>
 
 <div class="form_spacer"></div>
@@ -39,7 +39,7 @@ Wype³nij poni¿sze pola tylko wtedy gdy chcesz zmienic has³o!<br/>
 <div class="form_spacer"></div>
 
 <div class="button_panel">
-<input type="submit" class="button_submit" value="Zapisz" /> lub <a href="/admins/{{admin.id}}" class="nav">Anuluj</a>
+<input type="submit" class="button_submit" value="Zapisz" /> lub <a href="{{basepath}}/{{admin.id}}" class="nav">Anuluj</a>
 </div>
 
 <input type="hidden" name="id" value="{{admin.id}}" />

@@ -1,7 +1,12 @@
 # Create your views here.
-from webcon.admins.decorators import admin_can_read, admin_can_write
-from webcon.admin.confs.models import Conference
+from webcon.common.decorators import admin_can_read, admin_can_write
+from webcon.models.m_confs import Conference
 from webcon.common.helpers import render
+
+MODULE = 'admin'
+SUBMODULE = 'confs'
+TPLPATH = MODULE+'/'+SUBMODULE
+BASEPATH = '/'+MODULE+'/'+SUBMODULE
 
 @admin_can_read
 def index(request):
@@ -11,5 +16,5 @@ def index(request):
     #    h.tmp_country = [c.name for c in countries if c.id == h.country_id][0]
     #    h.tmp_stars = range(h.standard)
     vars = {'confs': confs}
-    return render('confs/confs_index.html', request, vars)
+    return render(TPLPATH+'/index.html', request, vars)
 

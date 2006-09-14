@@ -1,7 +1,7 @@
 from django.db import models
-from webcon.common.models import Address
-from webcon.hotels.models import Hotel
-from webcon.contr.models import Contractor
+from webcon.models.m_common import Address
+from webcon.models.m_hotels import Hotel
+from webcon.models.m_contrs import Contractor
 
 # Create your models here.
 

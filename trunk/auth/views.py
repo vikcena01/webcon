@@ -39,7 +39,7 @@ def login(request):
                     # zaktualizujmy last_login
                     admin.last_login = datetime.now()
                     admin.save()
-                    return HttpResponseRedirect("/hotels/")
+                    return HttpResponseRedirect("/admin/confs/")
                 
             except User.DoesNotExist:
                 pass

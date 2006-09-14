@@ -58,7 +58,7 @@ ROOT_URLCONF = 'webcon.urls'
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates".
     # Always use forward slashes, even on Windows.
-    "/home/webcon/_templates"
+    "/home/webcon/templates"
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

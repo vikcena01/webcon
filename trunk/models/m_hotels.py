@@ -1,5 +1,5 @@
 from django.db import models
-from webcon.common.models import Country, Address
+from webcon.models.m_common import Country, Address
 
 # Create your models here.
 

@@ -1,4 +1,4 @@
-{% extends "admins/admins_base.html" %}
+{% extends "admin/admins/base.html" %}
 
 {% block title %}Lista administratorów{% endblock %}
 
@@ -17,6 +17,6 @@
 {% endfor %}
 </table>
 <br/>
-<a href="/admins/new" class="nav">Dodaj</a>
+<a href="{{basepath}}/new" class="nav">Dodaj</a>
 
 {% endblock %}

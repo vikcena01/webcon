@@ -4,7 +4,7 @@ urlpatterns = patterns('',
     # Example:
     # (r'^webcon/', include('webcon.apps.foo.urls.foo')),
     
-    (r'^m/(.*)$', 'django.views.static.serve', {'document_root': '/home/webcon/_media', 'show_indexes': True}),
+    (r'^m/(.*)$', 'django.views.static.serve', {'document_root': '/home/webcon/media', 'show_indexes': True}),
     
     (r'^admin/', include('webcon.views.admin.urls')),
     (r'^user/', include('webcon.views.user.urls')),

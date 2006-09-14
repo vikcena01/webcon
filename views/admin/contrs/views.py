@@ -8,6 +8,13 @@ from webcon.misc.decorators import admin_can_read, admin_can_write
 from webcon.misc.helpers import render
 from django.http import HttpResponseRedirect
 
+MODULE = 'admin'
+SUBMODULE = 'contrs'
+TPLPATH = MODULE+'/'+SUBMODULE
+BASEPATH = '/'+MODULE+'/'+SUBMODULE
+
+vars = { 'basepath': BASEPATH }
+
 
 @admin_can_read
 def index(request):
@@ -15,24 +22,22 @@ def index(request):
     # countries = Country.objects.order_by('name')
     # for h in hotels:
     #    h.tmp_stars = range(h.standard)
-    vars = {'contractors': conts}
-    return render('contr/contr_index.html', request, vars)
+    vars['contractors'] = conts
+    return render(TPLPATH+'/index.html', request, vars)
 
 
 @admin_can_read
 def overview(request, contr_id):
-    vars = {}
     cont = get_object_or_404(Contractor, pk=contr_id)
     # hotel.tmp_stars = range(hotel.standard)
     vars['contractor'] = cont
     vars['contractors'] = Contractor.objects.all().order_by('name')
    
-    return render('contr/contr_overview.html', request, vars)
+    return render(TPLPATH+'/overview.html', request, vars)
 
 
 @admin_can_write
 def edit(request, contr_id=None):
-    vars = {}
     vars['hotel_standards'] = HOTEL_STANDARDS
     vars['countries'] = Country.objects.order_by('name')
     vars['hotels'] = Hotel.objects.all().order_by('name')
@@ -40,7 +45,7 @@ def edit(request, contr_id=None):
         hotel = get_object_or_404(Hotel, pk=hotel_id)
         vars['hotel'] = hotel
    
-    return render('contr/contr_edit.html', request, vars)
+    return render(TPLPATH+'/edit.html', request, vars)
 
 
 
@@ -63,13 +68,13 @@ def save(request):
         hotel.description = request.POST['desc']
         hotel.save()
         
-        return HttpResponseRedirect("/contr/%s" % hotel.id)
+        return HttpResponseRedirect(BASEPATH+"/%s" % hotel.id)
     else:
-        return HttpResponseRedirect("/contr/")
+        return HttpResponseRedirect(BASEPATH)
 
 
 @admin_can_write
 def delete(request, contr_id):
     hotel = get_object_or_404(Hotel, pk=hotel_id)
     hotel.delete()
-    return HttpResponseRedirect("/contr/")
+    return HttpResponseRedirect(BASEPATH)

@@ -1,6 +1,6 @@
 from django.db import models
-from webcon.models.m_common import Country
-from webcon.models.m_confs import Room, Extra
+from webcon.models.common import Country
+from webcon.models.confs import Room, Extra
 
 # Create your models here.
 

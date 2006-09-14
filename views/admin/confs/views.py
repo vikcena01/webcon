@@ -1,7 +1,5 @@
-# Create your views here.
-from webcon.misc.decorators import admin_can_read, admin_can_write
-from webcon.misc.helpers import render
-from webcon.models.confs import Conference
+
+from webcon.imports import *
 
 MODULE = 'admin'
 SUBMODULE = 'confs'

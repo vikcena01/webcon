@@ -1,9 +1,5 @@
-# Create your views here.
-from django.shortcuts import render_to_response, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
-#from django.db.models.Model import DoesNotExist
-from webcon.models.admins import Admin
-from webcon.models.users import User
+
+from webcon.imports import *
 from datetime import datetime
 import md5
 

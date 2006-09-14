@@ -1,5 +1,5 @@
 from django.db import models
-from webcon.models.m_common import Address
+from webcon.models.common import Address
 
 class Contractor(models.Model):
     id = models.AutoField(primary_key=True)

@@ -1,11 +1,6 @@
-# Create your views here.
 
-from django.shortcuts import render_to_response, get_object_or_404
-from webcon.models.admins import Admin
-from webcon.models.common import Country
-from webcon.misc.decorators import admin_can_write
-from webcon.misc.helpers import render
-from django.http import HttpResponseRedirect,HttpResponse
+from webcon.imports import *
+
 #from django.db import IntegrityError
 from psycopg import IntegrityError
 import md5

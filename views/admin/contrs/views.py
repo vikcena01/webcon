@@ -1,12 +1,5 @@
-# Create your views here.
 
-from django.shortcuts import render_to_response, get_object_or_404
-from webcon.models.hotels import Hotel
-from webcon.models.common import Country, Address
-from webcon.models.contrs import Contractor
-from webcon.misc.decorators import admin_can_read, admin_can_write
-from webcon.misc.helpers import render
-from django.http import HttpResponseRedirect
+from webcon.imports import *
 
 MODULE = 'admin'
 SUBMODULE = 'contrs'

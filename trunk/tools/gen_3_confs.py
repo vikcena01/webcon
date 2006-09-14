@@ -28,9 +28,5 @@ for name in conf_names:
     c.address = get_address()
     c.reg_deadline = start + timedelta(-7)
     c.save()
-    
-#    h.standard = (int)(random()*5)+1
-#    h.address = a
-#    h.save()
-    
+  
     counter += 1

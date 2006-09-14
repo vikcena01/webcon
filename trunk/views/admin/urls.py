@@ -5,7 +5,7 @@ urlpatterns = patterns('webcon.views.admin',
     (r'^hotels/', include('views.admin.hotels.urls')),
     (r'^admins/', include('views.admin.admins.urls')),
     (r'^users/', include('views.admin.users.urls')),
-    (r'^contr/', include('views.admin.contrs.urls')),
+    (r'^contrs/', include('views.admin.contrs.urls')),
 #    (r'^r/', include('django.conf.urls.shortcut')),
 
 )

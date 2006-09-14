@@ -1,4 +1,4 @@
-{% extends "hotels/hotels_base.html" %}
+{% extends "admin/hotels/base.html" %}
 
 {% block title %}Podgl±d: {{hotel.name}}{% endblock %}
 
@@ -20,8 +20,8 @@
 &nbsp;&nbsp;{{hotel.address.country.name}}<br/>
 
 <br/>
-<a href="/hotels/{{hotel.id}}/edit" style="float: left" class="nav">Edytuj</a> 
-<a href="/hotels/{{hotel.id}}/del" style="float: left" class="nav" onclick="return confirmDelete('hotel {{hotel.name}}')">Usuñ</a>
-<a href="/hotels/" class="nav" style="float: right;">Wróæ</a>
+<a href="{{basepath}}/{{hotel.id}}/edit" style="float: left" class="nav">Edytuj</a> 
+<a href="{{basepath}}/{{hotel.id}}/del" style="float: left" class="nav" onclick="return confirmDelete('hotel {{hotel.name}}')">Usuñ</a>
+<a href="{{basepath}}" class="nav" style="float: right;">Wróæ</a>
 <br/>
 {% endblock %}

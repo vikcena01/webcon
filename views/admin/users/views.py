@@ -1,7 +1,7 @@
 # Create your views here.
 
 from django.shortcuts import render_to_response, get_object_or_404
-from webcon.admins.models import Admin
+from webcon.models.admins import Admin
 from webcon.common.models import Country
 from webcon.admins.decorators import admin_can_write
 from webcon.common.helpers import render

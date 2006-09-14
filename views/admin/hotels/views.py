@@ -1,11 +1,18 @@
 # Create your views here.
 
 from django.shortcuts import render_to_response, get_object_or_404
-from webcon.admin.hotels.models import Hotel
-from webcon.common.models import Country, Address
-from webcon.admin.admins.decorators import admin_can_read, admin_can_write
-from webcon.common.helpers import render
+from webcon.models.hotels import Hotel
+from webcon.models.common import Country, Address
+from webcon.misc.decorators import admin_can_read, admin_can_write
+from webcon.misc.helpers import render
 from django.http import HttpResponseRedirect
+
+MODULE = 'admin'
+SUBMODULE = 'hotels'
+TPLPATH = MODULE+'/'+SUBMODULE
+BASEPATH = '/'+MODULE+'/'+SUBMODULE
+
+vars = { 'basepath': BASEPATH }
 
 HOTEL_STANDARDS = [
    {'value':1, 'stars':'*'},
@@ -21,24 +28,22 @@ def index(request):
     countries = Country.objects.order_by('name')
     for h in hotels:
         h.tmp_stars = range(h.standard)
-    vars = {'hotels': hotels}
-    return render('hotels/hotels_index.html', request, vars)
+    vars['hotels'] = hotels
+    return render(TPLPATH+'/index.html', request, vars)
 
 
 @admin_can_read
 def overview(request, hotel_id):
-    vars = {}
     hotel = get_object_or_404(Hotel, pk=hotel_id)
     hotel.tmp_stars = range(hotel.standard)
     vars['hotel'] = hotel
     vars['hotels'] = Hotel.objects.all().order_by('name')
    
-    return render('hotels/hotels_overview.html', request, vars)
+    return render(TPLPATH+'/overview.html', request, vars)
 
 
 @admin_can_write
 def edit(request, hotel_id=None):
-    vars = {}
     vars['hotel_standards'] = HOTEL_STANDARDS
     vars['countries'] = Country.objects.order_by('name')
     vars['hotels'] = Hotel.objects.all().order_by('name')
@@ -46,7 +51,7 @@ def edit(request, hotel_id=None):
         hotel = get_object_or_404(Hotel, pk=hotel_id)
         vars['hotel'] = hotel
    
-    return render('hotels/hotels_edit.html', request, vars)
+    return render(TPLPATH+'/edit.html', request, vars)
 
 
 
@@ -69,13 +74,13 @@ def save(request):
         hotel.description = request.POST['desc']
         hotel.save()
         
-        return HttpResponseRedirect("/hotels/%s" % hotel.id)
+        return HttpResponseRedirect(BASEPATH+"/%s" % hotel.id)
     else:
-        return HttpResponseRedirect("/hotels/")
+        return HttpResponseRedirect(BASEPATH)
 
 
 @admin_can_write
 def delete(request, hotel_id):
     hotel = get_object_or_404(Hotel, pk=hotel_id)
     hotel.delete()
-    return HttpResponseRedirect("/hotels/")
+    return HttpResponseRedirect(BASEPATH)

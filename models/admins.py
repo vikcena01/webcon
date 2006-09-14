@@ -15,4 +15,4 @@ class Admin(models.Model):
         db_table = 'admin'
 
     def get_absolute_url(self):
-        return "/admins/%s" % self.id
+        return "/admin/admins/%s" % self.id

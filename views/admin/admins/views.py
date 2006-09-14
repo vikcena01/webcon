@@ -1,10 +1,10 @@
 # Create your views here.
 
 from django.shortcuts import render_to_response, get_object_or_404
-from webcon.admin.admins.models import Admin
-from webcon.common.models import Country
-from webcon.admin.admins.decorators import admin_can_write
-from webcon.common.helpers import render
+from webcon.models.admins import Admin
+from webcon.models.common import Country
+from webcon.misc.decorators import admin_can_write
+from webcon.misc.helpers import render
 from django.http import HttpResponseRedirect,HttpResponse
 #from django.db import IntegrityError
 from psycopg import IntegrityError
@@ -15,17 +15,17 @@ SUBMODULE = 'admins'
 TPLPATH = MODULE+'/'+SUBMODULE
 BASEPATH = '/'+MODULE+'/'+SUBMODULE
 
+vars = { 'basepath': BASEPATH }
 
 @admin_can_write
 def index(request):
     admins = Admin.objects.all().order_by('login')
-    vars = {'admins': admins}
+    vars['admins'] = admins
     return render(TPLPATH+'/index.html', request, vars)
 
 
 @admin_can_write
 def overview(request, admin_id):
-    vars = {}
 #    vars['hotel_standards'] = HOTEL_STANDARDS
 #    vars['countries'] = 
     admin = get_object_or_404(Admin, pk=admin_id)
@@ -38,7 +38,6 @@ def overview(request, admin_id):
 
 @admin_can_write
 def edit(request, admin_id=None):
-    vars = {}
     # vars['users'] = User.objects.all().order_by('login')
     if admin_id:
         admin = get_object_or_404(Admin, pk=admin_id)

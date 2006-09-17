@@ -14,5 +14,11 @@ class Admin(models.Model):
     class Meta:
         db_table = 'admin'
 
-    def get_absolute_url(self):
+    def get_admin_overview_url(self):
         return "/admin/admins/%s" % self.id
+
+    def get_admin_edit_url(self):
+        return self.get_admin_overview_url() + "edit"
+
+    def get_admin_del_url(self):
+        return self.get_admin_overview_url() + "del"

@@ -1,9 +1,9 @@
-{% extends "users/users_base.html" %}
+{% extends "admin/users/base.html" %}
 
 {% block title %}{% if user %}Edycja: {{admin.login}}{% else %}Nowy administrator{% endif %}{% endblock %}
 
 {% block middlepane %}
-<form action="/admins/save/" method="post">
+<form action="{{basepath}}/save/" method="post">
 <h1>{{admin.login}}</h1>
 <br/>
 <label for="id_login">Login:</label><br>
@@ -39,7 +39,7 @@ Wype³nij poni¿sze pola tylko wtedy gdy chcesz zmienic has³o!<br/>
 <div class="form_spacer"></div>
 
 <div class="button_panel">
-<input type="submit" class="button_submit" value="Zapisz" /> lub <a href="/admins/{{admin.id}}" class="nav">Anuluj</a>
+<input type="submit" class="button_submit" value="Zapisz" /> lub <a href="{{user.get_admin_overview_url}}" class="nav">Anuluj</a>
 </div>
 
 <input type="hidden" name="id" value="{{admin.id}}" />

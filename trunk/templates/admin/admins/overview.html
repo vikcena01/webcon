@@ -14,8 +14,8 @@ Ostatnie nieudane logowanie: {{admin.last_bad_login|date:"jS F Y H:i"|default:"b
 <br/>
 
 <br/>
-<a href="{{basepath}}/{{admin.id}}/edit" style="float: left" class="nav">Edytuj</a> 
-<a href="{{basepath}}/{{admin.id}}/del" style="float: left" class="nav" onclick="return confirmDelete('administratora {{admin.login}}')">Usuñ</a>
+<a href="{{admin.get_admin_edit_url}}" style="float: left" class="nav">Edytuj</a> 
+<a href="{{admin.get_admin_del_url}}" style="float: left" class="nav" onclick="return confirmDelete('administratora {{admin.login}}')">Usuñ</a>
 <a href="{{basepath}}/" class="nav" style="float: right;">Wróæ</a>
 <br/>
 {% endblock %}

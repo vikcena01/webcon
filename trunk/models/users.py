@@ -17,11 +17,21 @@ class User(models.Model):
     last_good_login = models.DateTimeField()
     last_bad_login = models.DateTimeField()
 
-    def get_absolute_url(self):
-        return "/users/%s" % self.id
+    def fullname(self):
+        return self.firstname + " " + self.lastname
+    
+    def get_admin_overview_url(self):
+        return "/admin/users/%s" % self.id
+
+    def get_admin_edit_url(self):
+        return self.get_admin_overview_url() + "edit"
+
+    def get_admin_del_url(self):
+        return self.get_admin_overview_url() + "del"
 
     class Meta:
         db_table = 'user'
+        
     class Admin:
         pass
 

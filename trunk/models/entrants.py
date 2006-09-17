@@ -20,10 +20,10 @@ class Entrant(models.Model):
         return "/admin/entr/%s" % self.id
 
     def get_admin_edit_url(self):
-        return self.get_admin_overview_url() + "edit"
+        return self.get_admin_overview_url() + "/edit"
 
     def get_admin_del_url(self):
-        return self.get_admin_overview_url() + "del"
+        return self.get_admin_overview_url() + "/del"
 
     class Meta:
         db_table = 'entrant'

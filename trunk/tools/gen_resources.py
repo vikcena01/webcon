@@ -1,5 +1,5 @@
 from random import random
-from webcon.common.models import Country, Address
+from webcon.models.common import Country, Address
 from datetime import *
 
 hotel_names = file('hotele-ok.txt').read().split("\n")
@@ -64,8 +64,10 @@ def get_phone():
         phone += "%i" % (int)(random()*10)    
     return phone
 
-def get_email():
-    return firstnames[(int)(random() * len(firstnames))].lower()+"@"+hotel_names[(int)(random() * len(hotel_names))].lower()[:6].strip()+".pl"
+def get_email(firstname=None):
+    if not firstname:
+        firstname = firstnames[(int)(random() * len(firstnames))]
+    return firstname.lower()+"@"+hotel_names[(int)(random() * len(hotel_names))].lower()[:6].strip()+".pl"
 
 def get_account():
     account = "";
@@ -95,3 +97,9 @@ def get_period():
 
 def get_price():
     return 10*(int)(random()*10)
+
+def get_firstname():
+    return firstnames[(int)(random() * len(firstnames))]
+
+def get_lastname():
+    return lastnames[(int)(random() * len(lastnames))]

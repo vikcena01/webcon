@@ -20,8 +20,8 @@
 &nbsp;&nbsp;{{hotel.address.country.name}}<br/>
 
 <br/>
-<a href="{{basepath}}/{{hotel.id}}/edit" style="float: left" class="nav">Edytuj</a> 
-<a href="{{basepath}}/{{hotel.id}}/del" style="float: left" class="nav" onclick="return confirmDelete('hotel {{hotel.name}}')">Usuñ</a>
+<a href="{{hotel.get_admin_edit_url}}" style="float: left" class="nav">Edytuj</a> 
+<a href="{{hotel.get_admin_del_url}}" style="float: left" class="nav" onclick="return confirmDelete('hotel {{hotel.name}}')">Usuñ</a>
 <a href="{{basepath}}" class="nav" style="float: right;">Wróæ</a>
 <br/>
 {% endblock %}

@@ -10,7 +10,7 @@
 <tr>
 <td style="text-align: right;">{{forloop.counter}}</td>
 <td>
-<a href="{{c.get_absolute_url}}">{{c.name}}</a>
+<a href="{{c.get_admin_overview_url}}">{{c.name}}</a>
 </td>
 <td>{{c.phone}}</td>
 <td><a href="mailto:{{c.email}}">{{c.email}}</a></td>
@@ -18,6 +18,6 @@
 {% endfor %}
 </table>
 <br/>
-<a href="/contr/new" class="nav">Dodaj</a>
+<a href="{{basepath}}/new" class="nav">Dodaj</a>
 
 {% endblock %}

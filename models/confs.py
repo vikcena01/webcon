@@ -22,8 +22,14 @@ class Conference(models.Model):
     reg_deadline = models.DateTimeField()
 
     
-    def get_admin_url(self):
+    def get_admin_overview_url(self):
         return "/admin/confs/%s" % self.id
+
+    def get_admin_edit_url(self):
+        return self.get_admin_overview_url() + "edit"
+
+    def get_admin_del_url(self):
+        return self.get_admin_overview_url() + "del"
 
     def get_user_url(self):
         return "/user/confs/%s" % self.id

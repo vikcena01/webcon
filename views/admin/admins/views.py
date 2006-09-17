@@ -53,6 +53,11 @@ def save(request):
 #        return HttpResponse(str(request.POST))
         admin.fullname = request.POST['fullname']
         admin.login = request.POST['login']
+        if request.POST.get('can_write', '0') == '1':
+            admin.can_write = True
+        else:
+            admin.can_write = False
+            
         # user.role = request.POST['role']
         admin.passwd_hash = md5.new(request.POST['pass1']).hexdigest()
         try:
@@ -65,7 +70,19 @@ def save(request):
 
 
 @admin_can_write
-def delete(request, user_id):
-    user = get_object_or_404(User, pk=user_id)
-    user.delete()
+def delete(request, admin_id):
+    admin = get_object_or_404(Admin, pk=admin_id)
+    admin.delete()
     return HttpResponseRedirect(BASEPATH)
+
+def block(request, admin_id):
+    admin = get_object_or_404(Admin, pk=admin_id)
+    admin.active = False
+    admin.save()
+    return HttpResponseRedirect(BASEPATH+"/%s" % admin.id)
+
+def activate(request, admin_id):
+    admin = get_object_or_404(Admin, pk=admin_id)
+    admin.active = True
+    admin.save()
+    return HttpResponseRedirect(BASEPATH+"/%s" % admin.id)

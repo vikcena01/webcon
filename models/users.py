@@ -16,18 +16,25 @@ class User(models.Model):
     registered = models.DateTimeField()
     last_good_login = models.DateTimeField()
     last_bad_login = models.DateTimeField()
+    active = models.BooleanField()
 
     def fullname(self):
-        return self.firstname + " " + self.lastname
+        return self.lastname + " " + self.firstname
     
     def get_admin_overview_url(self):
         return "/admin/users/%s" % self.id
 
     def get_admin_edit_url(self):
-        return self.get_admin_overview_url() + "edit"
+        return self.get_admin_overview_url() + "/edit"
 
     def get_admin_del_url(self):
-        return self.get_admin_overview_url() + "del"
+        return self.get_admin_overview_url() + "/del"
+
+    def get_admin_activate_url(self):
+        return self.get_admin_overview_url() + "/activate"
+
+    def get_admin_block_url(self):
+        return self.get_admin_overview_url() + "/block"
 
     class Meta:
         db_table = 'user'

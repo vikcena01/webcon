@@ -1,22 +1,26 @@
 {% extends "admin/users/base.html" %}
 
-{% block title %}Lista administratorów{% endblock %}
+{% block title %}Lista u¿ytkowników{% endblock %}
 
 {% block middlepane %}
 
+<a href="{{basepath}}/new" class="nav">Dodaj</a><br/>
+<br/>
+
 <table class="list">
-<tr><th>Lp.</th><th>Login</th><th>Imiê, Nazwisko</th></tr>
+<tr><th>Lp.</th><th>Imiê, Nazwisko</th><th>E-mail</th><th>Telefon</th></tr>
 {% for u in users %}
 <tr>
-<td style="text-align: right;">{{forloop.counter}}</td>
+<td style="text-align: right;">{{offset|add:forloop.counter}}</td>
 <td>
-<a href="{{u.get_admin_overview_url}}">{{a.login}}</a>
+<a href="{{u.get_admin_overview_url}}">{{u.fullname}}</a>
 </td>
-<td>{{a.fullname}}</td>
+<td>{{u.phone}}</td>
+<td><a href="mailto:{{u.email}}"">{{u.email}}</a></td>
 </tr>
 {% endfor %}
 </table>
 <br/>
-<a href="{{basepath}}/new" class="nav">Dodaj</a>
+{% include "pager.html" %}
 
 {% endblock %}

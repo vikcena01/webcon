@@ -1,46 +1,57 @@
 # Create your views here.
 
-from django.shortcuts import render_to_response, get_object_or_404
-from webcon.models.admins import Admin
-from webcon.common.models import Country
-from webcon.admins.decorators import admin_can_write
-from webcon.common.helpers import render
-from django.http import HttpResponseRedirect,HttpResponse
+from webcon.imports import *
+
 #from django.db import IntegrityError
 from psycopg import IntegrityError
 
 import md5
 
+MODULE = 'admin'
+SUBMODULE = 'users'
+TPLPATH = MODULE+'/'+SUBMODULE
+BASEPATH = '/'+MODULE+'/'+SUBMODULE
+elements_per_page = 25
+vars = { 'basepath': BASEPATH }
+
 
 @admin_can_write
 def index(request):
-    admins = Admin.objects.all().order_by('login')
-    vars = {'admins': admins}
-    return render('users/users_index.html', request, vars)
+    page = int(request.GET.get('page', 0))
+    offset = page * elements_per_page
+    count = User.objects.all().count()
+    pages = count / elements_per_page
+    if count % elements_per_page > 0:
+        pages += 1
+    users = User.objects.all().order_by('lastname', 'firstname')[offset:offset+elements_per_page]
+    vars['users'] = users
+    vars['offset'] = offset
+    vars['pages'] = range(pages)
+    vars['page'] = page
+    # vars['']
+    return render(TPLPATH+'/index.html', request, vars)
 
 
 @admin_can_write
-def overview(request, admin_id):
-    vars = {}
-#    vars['hotel_standards'] = HOTEL_STANDARDS
-#    vars['countries'] = 
+def overview(request, user_id):
     user = get_object_or_404(User, pk=user_id)
-    user.tmp_role = {1:'Zwyk³y u¿ytkownik', 2:'Administrator'}[user.role]
     vars['user'] = user
-    vars['users'] = User.objects.all().order_by('login')
+#    vars['users'] = User.objects.all().order_by('login')
    
-    return render('users/users_overview.html', request, vars)
+    return render(TPLPATH+'/overview.html', request, vars)
 
 
 @admin_can_write
 def edit(request, user_id=None):
-    vars = {}
-    vars['users'] = User.objects.all().order_by('login')
+    # vars['users'] = User.objects.all().order_by('login')
     if user_id:
         user = get_object_or_404(User, pk=user_id)
-        vars['user'] = user
+    else:
+        user = None
+    
+    vars['user'] = user
    
-    return render('users/users_edit.html', request, vars)
+    return render(TPLPATH+'/edit.html', request, vars)
 
 
 
@@ -55,19 +66,19 @@ def save(request):
 #        return HttpResponse(str(request.POST))
         user.fullname = request.POST['fullname']
         user.login = request.POST['login']
-        user.role = request.POST['role']
+#        user.role = request.POST['role']
         user.passwd_hash = passwd_hash = md5.new(request.POST['pass1']).hexdigest()
         try:
             user.save()
         except IntegrityError:
             return HttpResponse("user o podanym loginie juz istnieje!")
-        return HttpResponseRedirect("/users/%s" % user.id)
+        return HttpResponseRedirect(BASEPATH+"/%s" % user.id)
     else:
-        return HttpResponseRedirect("/users/")
+        return HttpResponseRedirect(BASEPATH)
 
 
 @admin_can_write
 def delete(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     user.delete()
-    return HttpResponseRedirect("/users/")
+    return HttpResponseRedirect(BASEPATH)

@@ -12,7 +12,7 @@
 <td>
 <a href="{{a.get_admin_overview_url}}">{{a.login}}</a>
 </td>
-<td>{{a.fullname}}</td>
+<td>{% if not a.active %}<span class="admin_name_blocked">{{a.fullname}}</span>{% else %}{{a.fullname}}{% endif %}</td>
 </tr>
 {% endfor %}
 </table>

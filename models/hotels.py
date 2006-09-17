@@ -22,10 +22,10 @@ class Hotel(models.Model):
         return "/admin/hotels/%s" % self.id
 
     def get_admin_edit_url(self):
-        return self.get_admin_overview_url() + "edit"
+        return self.get_admin_overview_url() + "/edit"
 
     def get_admin_del_url(self):
-        return self.get_admin_overview_url() + "del"
+        return self.get_admin_overview_url() + "/del"
 
     def get_user_url(self):
         return "/user/hotels/%s" % self.id

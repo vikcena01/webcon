@@ -394,3 +394,21 @@ table.list tr:hover {
 	background-color: #eee;
 }
 
+span.admin_blocked {
+	color: red;
+	font-style: italic;
+}
+
+span.admin_name_blocked {
+	color: #555;
+	text-decoration: line-through;
+	font-style: italic;
+}
+
+div.pager {
+	text-align: center;
+}
+
+span.page_active {
+	font-weight: bold;
+}

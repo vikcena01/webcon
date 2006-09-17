@@ -1,0 +1,18 @@
+{% if pages %}
+<div class="pager">
+{% if page %}
+<a href="{{request.path}}?page={{page|add:"-1"}}" class="pager">&laquo;&laquo;</a> &nbsp;
+{% endif %}
+{% for i in pages %}
+{% ifequal page forloop.counter0 %}
+<span class="page_active">{{page|add:1}}</span>&nbsp; 
+{% else %}
+<a href="{{request.path}}?page={{i}}" class="pager">{{i|add:1}}</a> &nbsp;
+{% endifequal %}
+{% endfor %}
+
+{% ifnotequal page pages.-1 %}
+<a href="{{request.path}}?page={{page|add:1}}" class="pager">&raquo;&raquo;</a> &nbsp;
+{% endifnotequal %}
+</div>
+{% endif %}

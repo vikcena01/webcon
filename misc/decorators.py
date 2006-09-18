@@ -9,12 +9,12 @@ def admin_can_write(view_func):
     def _checklogin(request, *args, **kwargs):
         try:
             admin = request.session['admin']
-            if admin and admin.can_write:
-                return view_func(request, *args, **kwargs)
-            else:
-                return HttpResponse("Brak uprawnien do tej operacji!")
         except KeyError:
             return HttpResponseRedirect("/login")
+        if admin and admin.can_write:
+            return view_func(request, *args, **kwargs)
+        else:
+            return HttpResponse("Brak uprawnien do tej operacji!")
 
     return _checklogin
 
@@ -27,13 +27,13 @@ def admin_can_read(view_func):
     def _checklogin(request, *args, **kwargs):
         try:
             admin = request.session['admin']
-            # admin_type = request.session['admin_type']
-            if admin:
-                return view_func(request, *args, **kwargs)
-            else:
-                return HttpResponse("Brak uprawnien do tej operacji!")
         except KeyError:
             return HttpResponseRedirect("/login")
+            # admin_type = request.session['admin_type']
+        if admin:
+            return view_func(request, *args, **kwargs)
+        else:
+            return HttpResponse("Brak uprawnien do tej operacji!")
 
     return _checklogin
 

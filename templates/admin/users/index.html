@@ -1,6 +1,13 @@
 {% extends "admin/users/base.html" %}
 
 {% block title %}Lista u¿ytkowników{% endblock %}
+{% block left_title %}Filtr{% endblock %}
+
+{% block leftpane %}
+{% include "admin/users/filter.html" %}
+{% endblock %}
+
+{% block onload %}$('id_search_keyword').focus(){% endblock %}
 
 {% block middlepane %}
 
@@ -8,7 +15,7 @@
 <br/>
 
 <table class="list">
-<tr><th>Lp.</th><th>Imiê, Nazwisko</th><th>E-mail</th><th>Telefon</th></tr>
+<tr><th>Lp.</th><th><a href="?sort=name">Imiê, Nazwisko</a></th><th><a href="?sort=phone">Telefon</a></th><th><a href="?sort=email">E-mail</a></th></tr>
 {% for u in users %}
 <tr>
 <td style="text-align: right;">{{offset|add:forloop.counter}}</td>

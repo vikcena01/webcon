@@ -4,8 +4,8 @@ from webcon.imports import *
 
 #from django.db import IntegrityError
 from psycopg import IntegrityError
-
 import md5
+
 
 MODULE = 'admin'
 SUBMODULE = 'users'
@@ -17,13 +17,42 @@ vars = { 'basepath': BASEPATH }
 
 @admin_can_write
 def index(request):
-    page = int(request.GET.get('page', 0))
-    offset = page * elements_per_page
-    count = User.objects.all().count()
+
+    page, sort_by, sort_order, words = get_list_params(request, 'users')
+    
+    # filtrowanie 
+    
+    if words:
+        cond = Q()
+        for w in words:
+            subcond = Q()
+            subcond |= Q(firstname__istartswith=w)
+            subcond |= Q(lastname__istartswith=w)
+            subcond |= Q(email__icontains=w)
+            cond &= subcond
+        q = User.objects.filter(cond)
+    else:
+        q = User.objects.all()
+        
+    count = q.count()
     pages = count / elements_per_page
+    offset = page * elements_per_page
     if count % elements_per_page > 0:
         pages += 1
-    users = User.objects.all().order_by('lastname', 'firstname')[offset:offset+elements_per_page]
+        
+    # sortowanie
+    
+    if sort_by == 'name' or not sort_by:
+        q = q.order_by(sort_order+'lastname', 'firstname')
+    elif sort_by == 'phone':
+        q = q.order_by(sort_order+'phone')
+    elif sort_by == 'email':
+        q = q.order_by(sort_order+'email')
+    
+    # pobranie danych
+    
+    users = q[offset:offset+elements_per_page]
+    
     vars['users'] = users
     vars['offset'] = offset
     vars['pages'] = range(pages)

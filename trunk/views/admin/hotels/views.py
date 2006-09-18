@@ -19,7 +19,7 @@ HOTEL_STANDARDS = [
 @admin_can_read
 def index(request):
     hotels = Hotel.objects.all().order_by('name')
-    countries = Country.objects.order_by('name')
+    # countries = Country.objects.order_by('name')
     for h in hotels:
         h.tmp_stars = range(h.standard)
     vars['hotels'] = hotels

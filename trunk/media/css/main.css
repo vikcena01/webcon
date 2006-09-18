@@ -212,7 +212,7 @@ div.button_panel {
 }
 
 a {
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 a:link { color: black; }
@@ -220,7 +220,7 @@ a:visited { color: black; }
 a:hover {
 /*	color: #fff;
 	background-color: black;*/
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 a.nav {
@@ -412,3 +412,9 @@ div.pager {
 span.page_active {
 	font-weight: bold;
 }
+
+input.filter {
+	margin-bottom: 10px;
+	width: 100%;
+}
+

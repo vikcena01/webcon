@@ -17,6 +17,8 @@ urlpatterns = patterns('',
 
     (r'^login/?$', 'webcon.views.auth.views.login'),
     (r'^logout/?$', 'webcon.views.auth.views.logout'),
-    # Uncomment this for admin:
+
+    # (r'^$', 'django.views.generic.simple.redirect_to', {''}),
+# Uncomment this for admin:
 #     (r'^admin/', include('django.contrib.admin.urls')),
 )

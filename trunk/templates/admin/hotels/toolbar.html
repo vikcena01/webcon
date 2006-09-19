@@ -1,0 +1,4 @@
+{% extends "admin/toolbar.html" %}
+{% block search_keyword %}
+{{request.session.hotels_search_keyword}}
+{% endblock %}

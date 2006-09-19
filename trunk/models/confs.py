@@ -9,8 +9,6 @@ class Conference(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(maxlength=256)
     description = models.TextField()
-    # country = models.ForeignKey(Country, db_column='country')
-    # city = models.CharField(maxlength=64)
     contractor = models.ForeignKey(Contractor)
     start_date = models.DateField()
     end_date = models.DateField()
@@ -20,7 +18,6 @@ class Conference(models.Model):
     active = models.BooleanField()
     address = models.ForeignKey(Address)
     reg_deadline = models.DateTimeField()
-
     
     def get_admin_overview_url(self):
         return "/admin/confs/%s" % self.id
@@ -36,6 +33,30 @@ class Conference(models.Model):
 
     class Meta:
         db_table = 'conference'
+
+
+
+class ArchiveConference(Conference):
+    
+    def get_admin_overview_url(self):
+        return "/admin/confs/archive/%s" % self.id
+    
+    class Meta:
+        db_table = 'archive_conferences'
+
+
+
+class ActualConference(Conference):
+    
+    class Meta:
+        db_table = 'actual_conferences'
+
+
+
+class CommingConference(Conference):
+    
+    class Meta:
+        db_table = 'comming_conferences'
 
 
 

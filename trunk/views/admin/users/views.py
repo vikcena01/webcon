@@ -33,12 +33,22 @@ def index(request):
         q = User.objects.filter(cond)
     else:
         q = User.objects.all()
-        
+
+
+    # pager
+    
     count = q.count()
     pages = count / elements_per_page
     offset = page * elements_per_page
     if count % elements_per_page > 0:
         pages += 1
+
+    vars['offset'] = offset
+    if pages > 1:
+        vars['pages'] = range(pages)
+    else:
+        vars['pages'] = None
+    vars['page'] = page
         
     # sortowanie
     
@@ -52,13 +62,10 @@ def index(request):
     # pobranie danych
     
     users = q[offset:offset+elements_per_page]
-    
     vars['users'] = users
-    vars['offset'] = offset
-    vars['pages'] = range(pages)
-    vars['page'] = page
-    # vars['']
+    
     return render(TPLPATH+'/index.html', request, vars)
+
 
 
 @admin_can_write

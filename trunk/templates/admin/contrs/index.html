@@ -1,23 +1,26 @@
 {% extends "admin/contrs/base.html" %}
 
 {% block title %}Lista kontrahentów{% endblock %}
+{% block onload %}$('id_search_keyword').focus(){% endblock %}
 
 {% block middlepane %}
+{% include "admin/contrs/toolbar.html" %}
 
 <table class="list">
 <tr><th>Lp.</th><th>Kontrahent</th><th>Telefon</th><th>E-mail</th></tr>
 {% for c in contractors %}
 <tr>
-<td style="text-align: right;">{{forloop.counter}}</td>
+<td class="lp">{{forloop.counter}}</td>
 <td>
 <a href="{{c.get_admin_overview_url}}">{{c.name}}</a>
 </td>
-<td>{{c.phone}}</td>
-<td><a href="mailto:{{c.email}}">{{c.email}}</a></td>
+<td class="phone">{{c.phone}}</td>
+<td class="email"><a href="mailto:{{c.email}}">{{c.email}}</a></td>
 </tr>
 {% endfor %}
 </table>
 <br/>
-<a href="{{basepath}}/new" class="nav">Dodaj</a>
+{% include "pager.html" %}
+
 
 {% endblock %}

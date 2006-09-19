@@ -366,6 +366,7 @@ a.bold {
 table.list {
 	border: 1px solid #ccc;
 	border-spacing: 0;
+	width: 100%;
 	
 }
 
@@ -394,6 +395,20 @@ table.list tr:hover {
 	background-color: #eee;
 }
 
+table.list td.lp {
+	width: 30px;
+	text-align: right;
+}
+
+table.list td.phone {
+	width: 90px;
+	text-align: center;
+}
+
+table.list td.email {
+	width: 150px;
+}
+
 span.admin_blocked {
 	color: red;
 	font-style: italic;
@@ -418,3 +433,13 @@ input.filter {
 	width: 100%;
 }
 
+div.aa {
+	float: left;
+	width: 100px;
+}
+
+div.bb {
+	float: right;
+	width: 300px;
+	text-align: right;
+}

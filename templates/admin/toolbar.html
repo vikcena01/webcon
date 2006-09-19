@@ -1,4 +1,4 @@
-<div class="aa"><a href="{{basepath}}/new" class="nav">Dodaj</a></div>
+{% block addnew %}<div class="aa"><a href="{{basepath}}/new" class="nav">Dodaj</a></div>{% endblock %}
 <div class="bb"><form action="{{basepath}}/" method="POST">Filtr: 
 <input type="text" class="input_standard" name="search_keyword" id="id_search_keyword" value="{% block search_keyword %}{% endblock %}"> 
 <input type="submit" name="s" value="&raquo;" class="button_submit"></form></div>

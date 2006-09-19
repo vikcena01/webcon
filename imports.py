@@ -9,7 +9,7 @@ from django.db.models import Q
 from webcon.models.hotels import Hotel
 from webcon.models.common import Address,Country
 from webcon.models.contrs import Contractor
-from webcon.models.confs import Conference
+from webcon.models.confs import Conference, ActualConference, CommingConference, ArchiveConference
 from webcon.models.admins import Admin
 from webcon.models.users import User
 

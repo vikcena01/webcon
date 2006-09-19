@@ -5,7 +5,7 @@ MODULE = 'admin'
 SUBMODULE = 'hotels'
 TPLPATH = MODULE+'/'+SUBMODULE
 BASEPATH = '/'+MODULE+'/'+SUBMODULE
-
+elements_per_page = 25
 vars = { 'basepath': BASEPATH }
 
 HOTEL_STANDARDS = [
@@ -18,11 +18,53 @@ HOTEL_STANDARDS = [
 
 @admin_can_read
 def index(request):
-    hotels = Hotel.objects.all().order_by('name')
-    # countries = Country.objects.order_by('name')
+
+    page, sort_by, sort_order, words = get_list_params(request, 'hotels')
+
+    # filtrowanie 
+    
+    if words:
+        cond = Q()
+        for w in words:
+            subcond = Q()
+            subcond |= Q(name__icontains=w)
+            subcond |= Q(address__city__istartswith=w)
+            subcond |= Q(address__country__name__icontains=w)
+            cond &= subcond
+        q = Hotel.objects.filter(cond)
+    else:
+        q = Hotel.objects.all()
+
+    # pager
+    
+    count = q.count()
+    pages = count / elements_per_page
+    offset = page * elements_per_page
+    if count % elements_per_page > 0:
+        pages += 1
+
+    vars['offset'] = offset
+    if pages > 1:
+        vars['pages'] = range(pages)
+    else:
+        vars['pages'] = None
+    vars['page'] = page
+   
+    # sortowanie
+    
+    if sort_by == 'name' or not sort_by:
+        q = q.order_by(sort_order+'name')
+    elif sort_by == 'standard':
+        q = q.order_by(sort_order+'standard')
+    
+    # pobranie danych
+    
+    hotels = q[offset:offset+elements_per_page]
+
     for h in hotels:
         h.tmp_stars = range(h.standard)
     vars['hotels'] = hotels
+    
     return render(TPLPATH+'/index.html', request, vars)
 
 

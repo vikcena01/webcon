@@ -3,12 +3,15 @@
 {% block title %}Lista administratorów{% endblock %}
 
 {% block middlepane %}
+<a href="{{basepath}}/new" class="nav">Dodaj</a>
+<br/>
+<br/>
 
 <table class="list">
 <tr><th>Lp.</th><th>Login</th><th>Imiê, Nazwisko</th></tr>
 {% for a in admins %}
 <tr>
-<td style="text-align: right;">{{forloop.counter}}</td>
+<td class="lp">{{forloop.counter}}</td>
 <td>
 <a href="{{a.get_admin_overview_url}}">{{a.login}}</a>
 </td>
@@ -16,7 +19,5 @@
 </tr>
 {% endfor %}
 </table>
-<br/>
-<a href="{{basepath}}/new" class="nav">Dodaj</a>
 
 {% endblock %}

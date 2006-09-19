@@ -32,18 +32,24 @@ class Conference(models.Model):
         return "/user/confs/%s" % self.id
 
     class Meta:
-        db_table = 'conference'
+        db_table = 'conferenceaaa'
 
 
 
 class ArchiveConference(Conference):
     
+#    def __init__(self):
+        # Conference.__init__(self)
+        # Conference.Meta = self.Meta
+#        class tmp(self.Meta):
+#            db_table = "rrrrrr"
+#        self.Meta = tmp
+        
     def get_admin_overview_url(self):
         return "/admin/confs/archive/%s" % self.id
     
-    class Meta:
-        db_table = 'archive_conferences'
-
+    class Meta(Conference.Meta):
+        db_table = 'xxxxxxxx'
 
 
 class ActualConference(Conference):

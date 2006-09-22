@@ -37,7 +37,7 @@ def login(request):
                     admin.save()
                     return HttpResponseRedirect("/admin/confs/")
                 
-            except User.DoesNotExist:
+            except Admin.DoesNotExist:
                 pass
             
             return render_to_response('auth/auth_login.html', {'POST': request.POST, 'error': 'Niepoprawny login i/lub has³o!'})

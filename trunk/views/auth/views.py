@@ -2,7 +2,7 @@
 from webcon.imports import *
 from datetime import datetime
 import md5
-
+from django.db import connection
 
 def login(request):
     # blabla
@@ -12,34 +12,28 @@ def login(request):
         
         if '@' in login:
             # sprobojmy zalogowac uczestnika
-            try:
-                user = User.objects.get(email__exact=login)
-                if user.passwd_hash == passwd_hash:
-                    request.session['user_id'] = entrant.id
-                    request.session['user_last_login'] = entrant.last_login
-                    request.session['user_type'] = 'entrant'
-                    request.session['user_fullname'] = entrant.firstname+' '+entrant.lastname
-                    request.session['user_login'] = entrant.email
-                    return HttpResponseRedirect("/entrant/summary/")
-            except Entrant.DoesNotExist:
-                pass
+            cursor = connection.cursor()
+            cursor.execute("SELECT auth_user(%s,%s) AS id", [login,passwd_hash])
+            row = cursor.fetchone()
+            id = row[0]
+            if id >= 0:
+                user = User.objects.get(pk=id)
+                request.session['user'] = user
+                return HttpResponseRedirect("/entrant/")
+
             return render_to_response('auth/auth_login.html', {'POST': request.POST, 'error': 'Niepoprawny login i/lub has³o!'})
         else:
             # wiec moze admin?
-            try:
-                admin = Admin.objects.get(login__exact=login)
-                if admin.passwd_hash == passwd_hash:
-                    request.session['admin'] = admin
-                    request.session['user'] = admin
-                    # request.session['user_email'] = entrant.email
-                    # zaktualizujmy last_login
-                    admin.last_login = datetime.now()
-                    admin.save()
-                    return HttpResponseRedirect("/admin/confs/")
+            cursor = connection.cursor()
+            cursor.execute("SELECT auth_admin(%s,%s) AS id", [login,passwd_hash])
+            row = cursor.fetchone()
+            id = row[0]
+            if id >= 0:
+                admin = Admin.objects.get(pk=id)
+                request.session['admin'] = admin
+                request.session['user'] = admin
+                return HttpResponseRedirect("/admin/confs/")
                 
-            except Admin.DoesNotExist:
-                pass
-            
             return render_to_response('auth/auth_login.html', {'POST': request.POST, 'error': 'Niepoprawny login i/lub has³o!'})
         
     else:

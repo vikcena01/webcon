@@ -6,6 +6,10 @@
 {% block middlepane %}
 {% include "admin/confs/toolbar.html" %}
 
+Archiwalne konferencje:<br/>
+{% if confs|length %}
+<br/>
+
 <table class="list">
 <tr><th>Lp.</th><th>Termin</th><th>Nazwa</th><th>Miasto, Kraj</th></tr>
 {% for c in confs %}
@@ -19,6 +23,9 @@
 </tr>
 {% endfor %}
 </table>
+{% else %}
+&nbsp;&nbsp;Brak.
+{% endif %}
 <br/>
 <br/>
 <a href="/admin/confs/" class="nav">Wróæ</a>

@@ -8,6 +8,9 @@ urlpatterns = patterns('webcon.views.admin.confs.views',
     (r'^archive/$', 'archive'),
     (r'^new/$', 'edit'),
     (r'^save/$', 'save'),
+
+    (r'^archive/(?P<conf_id>\d+)/$', 'overview'),
+
 #    (r'^r/', include('django.conf.urls.shortcut')),
 
 )

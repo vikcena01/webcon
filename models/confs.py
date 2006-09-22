@@ -19,50 +19,68 @@ class Conference(models.Model):
     address = models.ForeignKey(Address)
     reg_deadline = models.DateTimeField()
     
-    def get_admin_overview_url(self):
-        return "/admin/confs/%s" % self.id
-
-    def get_admin_edit_url(self):
-        return self.get_admin_overview_url() + "/edit"
-
-    def get_admin_del_url(self):
-        return self.get_admin_overview_url() + "/del"
-
-    def get_user_url(self):
-        return "/user/confs/%s" % self.id
-
     class Meta:
-        db_table = 'conferenceaaa'
+        db_table = 'conference'
 
 
 
-class ArchiveConference(Conference):
-    
-#    def __init__(self):
-        # Conference.__init__(self)
-        # Conference.Meta = self.Meta
-#        class tmp(self.Meta):
-#            db_table = "rrrrrr"
-#        self.Meta = tmp
-        
-    def get_admin_overview_url(self):
-        return "/admin/confs/archive/%s" % self.id
-    
-    class Meta(Conference.Meta):
-        db_table = 'xxxxxxxx'
+class ArchiveConference(models.Model):  
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(maxlength=256)
+    description = models.TextField()
+    contractor = models.ForeignKey(Contractor)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    nights = models.SmallIntegerField()
+    price = models.FloatField(max_digits=65535, decimal_places=65531)
+    cost = models.FloatField(max_digits=65535, decimal_places=65531)
+    active = models.BooleanField()
+    address = models.ForeignKey(Address)
+    reg_deadline = models.DateTimeField()
+       
+    class Meta:
+        db_table = 'archive_conferences'
 
 
-class ActualConference(Conference):
+
+class ActualConference(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(maxlength=256)
+    description = models.TextField()
+    contractor = models.ForeignKey(Contractor)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    nights = models.SmallIntegerField()
+    price = models.FloatField(max_digits=65535, decimal_places=65531)
+    cost = models.FloatField(max_digits=65535, decimal_places=65531)
+    active = models.BooleanField()
+    address = models.ForeignKey(Address)
+    reg_deadline = models.DateTimeField()
     
     class Meta:
         db_table = 'actual_conferences'
 
 
 
-class CommingConference(Conference):
+class CommingConference(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(maxlength=256)
+    description = models.TextField()
+    contractor = models.ForeignKey(Contractor)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    nights = models.SmallIntegerField()
+    price = models.FloatField(max_digits=65535, decimal_places=65531)
+    cost = models.FloatField(max_digits=65535, decimal_places=65531)
+    active = models.BooleanField()
+    address = models.ForeignKey(Address)
+    reg_deadline = models.DateTimeField()
     
     class Meta:
         db_table = 'comming_conferences'
+
+
+
 
 
 

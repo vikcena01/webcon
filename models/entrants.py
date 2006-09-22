@@ -16,19 +16,9 @@ class Entrant(models.Model):
     room = models.ForeignKey(Room)
     nights = models.SmallIntegerField()
 
-    def get_admin_overview_url(self):
-        return "/admin/entr/%s" % self.id
-
-    def get_admin_edit_url(self):
-        return self.get_admin_overview_url() + "/edit"
-
-    def get_admin_del_url(self):
-        return self.get_admin_overview_url() + "/del"
-
     class Meta:
         db_table = 'entrant'
-    class Admin:
-        pass
+
 
 
 class EntrantExtra(models.Model):

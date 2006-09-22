@@ -15,13 +15,13 @@ Ostatnie nieudane logowanie: {{admin.last_bad_login|date:"jS F Y H:i"|default:"b
 <br/>
 
 <br/>
-<a href="{{admin.get_admin_edit_url}}" style="float: left" class="nav">Edytuj</a> 
+<a href="{{basepath}}/{{admin.id}}/edit" style="float: left" class="nav">Edytuj</a> 
 {% if admin.active %}
-<a href="{{admin.get_admin_block_url}}" style="float: left" class="nav" onclick="return confirmBlock('administratora {{admin.login}}')">Zablokuj</a>
+<a href="{{basepath}}/{{admin.id}}/block" style="float: left" class="nav" onclick="return confirmBlock('administratora {{admin.login}}')">Zablokuj</a>
 {% else %}
-<a href="{{admin.get_admin_activate_url}}" style="float: left" class="nav" onclick="return confirmActivate('administratora {{admin.login}}')">Aktywuj</a>
+<a href="{{basepath}}/{{admin.id}}/activate" style="float: left" class="nav" onclick="return confirmActivate('administratora {{admin.login}}')">Aktywuj</a>
 {% endif %}
-<a href="{{admin.get_admin_del_url}}" style="float: left" class="nav" onclick="return confirmDelete('administratora {{admin.login}}')">Usuñ</a>
+<a href="{{basepath}}/{{admin.id}}/del" style="float: left" class="nav" onclick="return confirmDelete('administratora {{admin.login}}')">Usuñ</a>
 <a href="{{basepath}}/" class="nav" style="float: right;">Wróæ</a>
 <br/>
 {% endblock %}

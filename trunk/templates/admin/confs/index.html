@@ -7,9 +7,33 @@
 <a href="{{basepath}}/new" class="nav">Dodaj</a><br/>
 <br/>
 
+Aktualnie odbywaj±ce siê konferencje:<br/>
+{% if actual_confs|length %}
+<br/>
 <table class="list">
 <tr><th>Lp.</th><th>Termin</th><th>Nazwa</th><th>Miasto, Kraj</th></tr>
-{% for c in confs %}
+{% for c in actual_confs %}
+<tr>
+<td class="lp">{{forloop.counter}}</td>
+<td>{{c.start_date}} - {{c.end_date}}</td>
+<td>
+<a href="{{basepath}}/{{c.id}}">{{c.name}}</a>
+</td>
+<td>{{c.address.city}}, {{c.address.country.name}}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+&nbsp;&nbsp;Brak.
+{% endif %}
+<br/>
+<br/>
+
+Nadchodz±ce konferencje:<br/>
+<br/>
+<table class="list">
+<tr><th>Lp.</th><th>Termin</th><th>Nazwa</th><th>Miasto, Kraj</th></tr>
+{% for c in comming_confs %}
 <tr>
 <td class="lp">{{forloop.counter}}</td>
 <td>{{c.start_date}} - {{c.end_date}}</td>
@@ -22,5 +46,7 @@
 </table>
 <br/>
 <br/>
+
+
 <a href="/admin/confs/archive/" class="nav">Zobacz poprzednie konferencje</a>
 {% endblock %}

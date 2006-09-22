@@ -22,3 +22,11 @@ def archive(request):
     archive_confs = ArchiveConference.objects.all().order_by('-end_date')
     vars['confs'] = archive_confs
     return render(TPLPATH+'/archive.html', request, vars)
+
+@admin_can_read
+def overview(request, conf_id):
+    conf = get_object_or_404(Conference, pk=conf_id)
+    vars['conf'] = conf
+#    vars['hotels'] = Hotel.objects.all().order_by('name')
+   
+    return render(TPLPATH+'/overview.html', request, vars)

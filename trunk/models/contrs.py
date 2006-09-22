@@ -12,15 +12,6 @@ class Contractor(models.Model):
     email = models.CharField(maxlength=40)
     account = models.CharField(maxlength=32)
     address = models.ForeignKey(Address)
-    
-    def get_admin_overview_url(self):
-        return "/admin/contr/%s" % self.id
-
-    def get_admin_edit_url(self):
-        return self.get_admin_overview_url() + "/edit"
-    
-    def get_admin_del_url(self):
-        return self.get_admin_overview_url() + "/del"
 
     class Meta:
         db_table = 'contractor'

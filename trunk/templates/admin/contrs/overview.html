@@ -13,8 +13,8 @@ Ostatnie logowanie: {{user.last_login|date:"jS F Y H:i"|default:"brak"}}<br/>
 <br/>
 
 <br/>
-<a href="{{user.get_admin_edit_url}}" style="float: left" class="nav">Edytuj</a> 
-<a href="{{user.get_admin_del_url}}" style="float: left" class="nav" onclick="return confirmDelete('u¿ytkownika {{user.login}}')">Usuñ</a>
+<a href="{{basepath}}/{{c.id}}/edit" style="float: left" class="nav">Edytuj</a> 
+<a href="{{basepath}}/{{c.id}}/del" style="float: left" class="nav" onclick="return confirmDelete('u¿ytkownika {{user.login}}')">Usuñ</a>
 <a href="{{basepath}}" class="nav" style="float: right;">Wróæ</a>
 <br/>
 {% endblock %}

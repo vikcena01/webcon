@@ -73,7 +73,7 @@ def overview(request, hotel_id):
     hotel = get_object_or_404(Hotel, pk=hotel_id)
     hotel.tmp_stars = range(hotel.standard)
     vars['hotel'] = hotel
-    vars['hotels'] = Hotel.objects.all().order_by('name')
+#    vars['hotels'] = Hotel.objects.all().order_by('name')
    
     return render(TPLPATH+'/overview.html', request, vars)
 

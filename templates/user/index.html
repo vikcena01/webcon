@@ -1,0 +1,44 @@
+{% load formtags %}
+
+{% block title %}{% if user %}Edycja: {{user.name}}{% endif %}{% endblock %}
+
+{% block middlepane %}
+<form action="{{basepath}}/save/" method="post">
+<h1>{{user.lastname}} {{user.firstname}}</h1>
+<br/>
+
+{% form_input_text "Imiê" "firstname" user.firstname %}
+{% form_spacer %}
+{% form_input_text "Nazwisko" "lastname" user.lastname %}
+{% form_spacer %}
+{% form_input_text "E-mail" "email" user.email %}
+{% form_spacer %}
+{% form_input_text "Telefon" "phone" user.phone %}
+{% form_spacer %}
+{% form_select "P³eæ" "sex" sex_types user.sex %}
+{% form_spacer %}
+
+{% form_spacer %}
+{% form_input_text "Ulica" "address" user.address.address %}
+{% form_spacer %}
+{% form_input_text "Miasto" "city" user.address.city %}
+{% form_spacer %}
+{% form_select "Kraj" "country" countries user.address.country_id %}
+{% form_spacer %}
+{% form_spacer %}
+
+{% form_input_text "Stare has³o" "old_passwd" null %}
+{% form_spacer %}
+{% form_input_text "Nowe has³o" "new_passwd" null %}
+{% form_spacer %}
+{% form_input_text "Powtórz has³o" "new_passwd2" null %}
+{% form_spacer %}
+
+<div class="button_panel">
+<input type="submit" class="button_submit" value="Zapisz" /> lub <a href="{{basepath}}/{{user.id}}" class="nav">Anuluj</a>
+</div>
+
+<input type="hidden" name="id" value="{{user.id}}" />
+</form>
+
+{% endblock %}

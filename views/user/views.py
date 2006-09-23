@@ -6,9 +6,8 @@ from psycopg import IntegrityError
 import md5
 
 MODULE = 'user'
-SUBMODULE = 'users'
-TPLPATH = MODULE+'/'+SUBMODULE
-BASEPATH = '/'+MODULE+'/'+SUBMODULE
+TPLPATH = MODULE
+BASEPATH = '/'+MODULE
 
 vars = { 'basepath': BASEPATH }
 
@@ -16,11 +15,14 @@ vars = { 'basepath': BASEPATH }
 def index(request):
     user_id = request.session['user'].id
     user = get_object_or_404(User, pk=user_id)
-    if user:
-        vars['user'] = user
-        return render(TPLPATH+'/index.html', request, vars)
-        
-    return HttpResponseRedirect("/login")
+    vars['user'] = user
+    
+    vars['sex_types'] = [('K','Kobieta'),('M','Mê¿czyzna')]
+    vars['countries'] = [(c.id, c.name) for c in Country.objects.order_by('name')]
+    
+    return render(TPLPATH+'/index.html', request, vars)
+
+
 
 
 

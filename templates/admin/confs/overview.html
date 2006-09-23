@@ -5,19 +5,16 @@
 {% block middlepane %}
 
 <h1>{{conf.name}}</h1>
-{% for i in hotel.tmp_stars %}
-<img src="/m/gfx/star.gif" border="0" width="16" height="16" />
-{% endfor %}
+<h2>{{conf.start_date}} - {{conf.end_date}}</h2>
 <br/>
-<br/>
-{{hotel.description|linebreaks}}
+{{conf.description|linebreaks}}
 <br/>
 <br/>
 
 <b>Lokalizacja:</b><br/>
-&nbsp;&nbsp;{{hotel.address.city}}<br/>
-&nbsp;&nbsp;{{hotel.address.address}}<br/>
-&nbsp;&nbsp;{{hotel.address.country.name}}<br/>
+&nbsp;&nbsp;{{conf.address.address}}<br/>
+&nbsp;&nbsp;{{conf.address.city}}<br/>
+&nbsp;&nbsp;{{conf.address.country.name}}<br/>
 
 <br/>
 <a href="{{hotel.get_admin_edit_url}}" style="float: left" class="nav">Edytuj</a> 

@@ -8,7 +8,9 @@
 <h1>{{hotel.name}}</h1>
 <br/>
 
-{% form_input_text "Nazwa" "name" hotel.name %}
+{% form_input_text "Nazwa" "name" hotel.name "huge" %}
+{% form_spacer %}
+{% form_select "Typ obiektu" "type" hotel_types hotel.type %}
 {% form_spacer %}
 {% form_select "Standard" "standard" hotel_standards hotel.standard %}
 {% form_spacer %}

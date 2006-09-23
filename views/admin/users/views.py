@@ -56,8 +56,6 @@ def index(request):
     
     if sort_by == 'name' or not sort_by:
         q = q.order_by(sort_order+'lastname', 'firstname')
-    elif sort_by == 'phone':
-        q = q.order_by(sort_order+'phone')
     elif sort_by == 'email':
         q = q.order_by(sort_order+'email')
     

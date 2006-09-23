@@ -8,7 +8,7 @@
 {% include "admin/users/toolbar.html" %}
 
 <table class="list">
-<tr><th>Lp.</th><th><a href="?sort=name">Imiê, Nazwisko</a></th><th><a href="?sort=phone">Telefon</a></th><th><a href="?sort=email">E-mail</a></th></tr>
+<tr><th>Lp.</th><th><a href="?sort=name">Imiê, Nazwisko</a></th><th>Telefon</th><th><a href="?sort=email">E-mail</a></th></tr>
 {% for u in users %}
 <tr>
 <td class="lp">{{offset|add:forloop.counter}}</td>

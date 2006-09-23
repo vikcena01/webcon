@@ -58,5 +58,31 @@ def edit(request, conf_id=None):
         vars['conf'] = conf
         vars['contractors'] = contractors
         vars['hotels'] = hotels
+        vars['confpath'] = BASEPATH+'/%s' % conf.id
    
     return render(TPLPATH+'/edit.html', request, vars)
+
+
+@admin_can_write
+def save(request):
+    if request.method == 'POST':
+        if request.POST['id']:
+            conf = get_object_or_404(Conference, pk=request.POST['id'])
+        else:
+            conf = Conference()
+            
+        admin.fullname = request.POST['fullname']
+        admin.login = request.POST['login']
+        if request.POST.get('can_write', '0') == '1':
+            admin.can_write = True
+        else:
+            admin.can_write = False
+            
+        admin.passwd_hash = md5.new(request.POST['pass1']).hexdigest()
+        # try:
+        conf.save()
+        # except IntegrityError:
+        #     return HttpResponse("admin o podanym loginie juz istnieje!")
+        return HttpResponseRedirect(BASEPATH+"/%s" % conf.id)
+    else:
+        return HttpResponseRedirect(BASEPATH)

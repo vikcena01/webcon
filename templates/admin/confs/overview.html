@@ -1,10 +1,9 @@
-{% extends "admin/confs/base.html" %}
+{% extends "admin/confs/base_per_conf.html" %}
 {% load formtags %}
 
 {% block title %}Podgl±d: {{conf.name}}{% endblock %}
 
 {% block middlepane %}
-{% include "admin/confs/toolbar.html" %}
 
 <h1>{{conf.name}}</h1>
 <h2>{{conf.start_date}} - {{conf.end_date}}</h2>

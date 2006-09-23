@@ -40,7 +40,7 @@ nigdy nie powinna sie pokazac!{% endblock %}
 <div class="box_title">&raquo; Konto</div>
 <div class="box_content">
 {% if request.session.user %}
-<b>{{ request.session.user.fullname }} (<i>{{ request.session.user.login }}</i>)</b><br/>
+<b>{{ request.session.user.fullname }}{% if request.session.user.login %} (<i>{{ request.session.user.login }}</i>){% endif %}</b><br/>
 <br/>
 Ostatnie logowanie: {{request.session.user.last_good_login|date:"jS F Y H:i"|default:"brak"}}<br/>
 <br/>

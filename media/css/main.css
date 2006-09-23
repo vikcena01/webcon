@@ -236,13 +236,18 @@ a.nav {
 	padding-right: 4px;
 	padding-top: 2px;
 	padding-bottom: 2px;
+	background-color: #AACCAA;
+	color: black;
+	margin-right: 5px;
 }
 
 a.nav:link, a.nav:visited {
-  color: #668866;
+  /*color: #668866;*/
 }
 
-a.nav:hover { color: #fff; background-color: #668866; }
+a.nav:hover { 
+	color: #fff; background-color: #668866; 
+}
 
 #leftpane a.active {
 	font-weight: bold;
@@ -425,6 +430,16 @@ span.admin_blocked {
 span.admin_name_blocked {
 	color: #555;
 	text-decoration: line-through;
+	font-style: italic;
+}
+
+span.conf_open {
+	color: green;
+	font-style: italic;
+}
+
+span.conf_closed {
+	color: red;
 	font-style: italic;
 }
 

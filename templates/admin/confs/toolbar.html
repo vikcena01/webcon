@@ -1,5 +1,3 @@
-{% extends "admin/toolbar.html" %}
-{% block search_keyword %}
-{{request.session.confs_search_keyword}}
-{% endblock %}
-{% block addnew %}{% endblock %}
+<a href="{{confpath}}" class="nav">Dane ogólne</a><a href="{{confpath}}/events" class="nav">Program</a><a href="{{confpath}}/extras" class="nav">Opcje dodatkowe</a><a href="{{confpath}}/entrants" class="nav">Uczestnicy</a>
+<br/>
+<br/>

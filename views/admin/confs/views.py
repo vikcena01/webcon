@@ -27,6 +27,22 @@ def archive(request):
 def overview(request, conf_id):
     conf = get_object_or_404(Conference, pk=conf_id)
     vars['conf'] = conf
+    vars['confpath'] = BASEPATH+'/%s' % conf.id
 #    vars['hotels'] = Hotel.objects.all().order_by('name')
    
     return render(TPLPATH+'/overview.html', request, vars)
+
+
+@admin_can_write
+def close(request, conf_id):
+    conf = get_object_or_404(Conference, pk=conf_id)
+    conf.active = False
+    conf.save()
+    return HttpResponseRedirect(BASEPATH+"/%s" % conf.id)
+
+@admin_can_write
+def open(request, conf_id):
+    conf = get_object_or_404(Conference, pk=conf_id)
+    conf.active = True
+    conf.save()
+    return HttpResponseRedirect(BASEPATH+"/%s" % conf.id)

@@ -135,12 +135,14 @@ def delete(request, user_id):
     return HttpResponseRedirect(BASEPATH)
 
 
+@admin_can_write
 def block(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     user.active = False
     user.save()
     return HttpResponseRedirect(BASEPATH+"/%s" % user.id)
 
+@admin_can_write
 def activate(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     user.active = True

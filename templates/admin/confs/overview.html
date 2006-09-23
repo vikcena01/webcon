@@ -1,24 +1,41 @@
 {% extends "admin/confs/base.html" %}
+{% load formtags %}
 
 {% block title %}Podgl±d: {{conf.name}}{% endblock %}
 
 {% block middlepane %}
+{% include "admin/confs/toolbar.html" %}
 
 <h1>{{conf.name}}</h1>
 <h2>{{conf.start_date}} - {{conf.end_date}}</h2>
+{% if not conf.active %}(<span class="conf_closed">konferencja nieotwarta</span>){% else %}(<span class="conf_open">konferencja otwarta</span>){% endif %}<br/>
 <br/>
 {{conf.description|linebreaks}}
 <br/>
+
+<b>Hotel:</b><br/>
+&nbsp; &nbsp; {{conf.hotel.name}}<br/>
+&nbsp; &nbsp; {{conf.hotel.address.city}}, {{conf.hotel.address.country.name}}<br/>
 <br/>
 
-<b>Lokalizacja:</b><br/>
-&nbsp;&nbsp;{{conf.address.address}}<br/>
-&nbsp;&nbsp;{{conf.address.city}}<br/>
-&nbsp;&nbsp;{{conf.address.country.name}}<br/>
+<b>Cena:</b> {{conf.cost}} PLN<br/>
+<br/>
+
+<b>Kontrahent:</b><br/>
+&nbsp; &nbsp; {{conf.contractor.name}}<br/>
+&nbsp; &nbsp; {{conf.contractor.address.address}}, {{conf.contractor.address.city}}, {{conf.contractor.address.country.name}}<br/>
+&nbsp; &nbsp; tel: {{conf.contractor.phone}}<br/>
+&nbsp; &nbsp; e-mail: {% email conf.contractor.email %}<br/>
+<br/>
 
 <br/>
-<a href="{{hotel.get_admin_edit_url}}" style="float: left" class="nav">Edytuj</a> 
-<a href="{{hotel.get_admin_del_url}}" style="float: left" class="nav" onclick="return confirmDelete('hotel {{hotel.name}}')">Usuñ</a>
+<a href="{{basepath}}/{{conf.id}}/edit" style="float: left" class="nav">Edytuj</a> 
+{% if conf.active %}
+<a href="{{basepath}}/{{conf.id}}/close" style="float: left" class="nav" onclick="return confirmClose('konferencjê {{conf.name}}')">Zamknij</a> 
+{% else %}
+<a href="{{basepath}}/{{conf.id}}/open" style="float: left" class="nav" onclick="return confirmOpen('konferencjê {{conf.name}}')">Otwórz</a> 
+{% endif %}
+<a href="{{basepath}}/{{conf.id}}/del" style="float: left" class="nav" onclick="return confirmDelete('konferencje {{conf.name}}')">Usuñ</a> 
 <a href="{{basepath}}" class="nav" style="float: right;">Wróæ</a>
 <br/>
 {% endblock %}

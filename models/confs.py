@@ -12,12 +12,10 @@ class Conference(models.Model):
     contractor = models.ForeignKey(Contractor)
     start_date = models.DateField()
     end_date = models.DateField()
-    nights = models.SmallIntegerField()
-    price = models.FloatField(max_digits=65535, decimal_places=65531)
     cost = models.FloatField(max_digits=65535, decimal_places=65531)
     active = models.BooleanField()
-    address = models.ForeignKey(Address)
     reg_deadline = models.DateTimeField()
+    hotel = models.ForeignKey(Hotel)
     
     class Meta:
         db_table = 'conference'
@@ -31,12 +29,10 @@ class ArchiveConference(models.Model):
     contractor = models.ForeignKey(Contractor)
     start_date = models.DateField()
     end_date = models.DateField()
-    nights = models.SmallIntegerField()
-    price = models.FloatField(max_digits=65535, decimal_places=65531)
     cost = models.FloatField(max_digits=65535, decimal_places=65531)
     active = models.BooleanField()
-    address = models.ForeignKey(Address)
     reg_deadline = models.DateTimeField()
+    hotel = models.ForeignKey(Hotel)
        
     class Meta:
         db_table = 'archive_conferences'
@@ -50,12 +46,10 @@ class ActualConference(models.Model):
     contractor = models.ForeignKey(Contractor)
     start_date = models.DateField()
     end_date = models.DateField()
-    nights = models.SmallIntegerField()
-    price = models.FloatField(max_digits=65535, decimal_places=65531)
     cost = models.FloatField(max_digits=65535, decimal_places=65531)
     active = models.BooleanField()
-    address = models.ForeignKey(Address)
     reg_deadline = models.DateTimeField()
+    hotel = models.ForeignKey(Hotel)
     
     class Meta:
         db_table = 'actual_conferences'
@@ -69,12 +63,10 @@ class CommingConference(models.Model):
     contractor = models.ForeignKey(Contractor)
     start_date = models.DateField()
     end_date = models.DateField()
-    nights = models.SmallIntegerField()
-    price = models.FloatField(max_digits=65535, decimal_places=65531)
     cost = models.FloatField(max_digits=65535, decimal_places=65531)
     active = models.BooleanField()
-    address = models.ForeignKey(Address)
     reg_deadline = models.DateTimeField()
+    hotel = models.ForeignKey(Hotel)
     
     class Meta:
         db_table = 'comming_conferences'
@@ -97,7 +89,6 @@ class Roomclass(models.Model):
     id = models.AutoField(primary_key=True)
     conference_hotel = models.ForeignKey(ConferenceHotel)
     size = models.SmallIntegerField()
-    price = models.FloatField(max_digits=65535, decimal_places=65531)
     cost = models.FloatField(max_digits=65535, decimal_places=65531)
     class Meta:
         db_table = 'roomclass'
@@ -129,7 +120,6 @@ class Extra(models.Model):
     description = models.TextField()
     place = models.CharField(maxlength=256)
     time = models.DateTimeField()
-    price = models.FloatField(max_digits=65535, decimal_places=65531)
     cost = models.FloatField(max_digits=65535, decimal_places=65531)
     class Meta:
         db_table = 'extra'

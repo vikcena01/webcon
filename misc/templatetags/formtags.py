@@ -13,7 +13,7 @@ def form_label(label, idfor='foo'):
 
 def form_input_text(label, name, value, size='big'):
     out = form_label(label, name)
-    out += '<input type="text" name="'+name+'" id="id_'+name+'" class="input_standard width_'+size+'" value="'+value+'">\n'
+    out += '<input type="text" name="%s" id="id_%s" class="input_standard width_%s" value="%s">\n' % (name, name, size, value)
     return out
 
 def form_select_without_label(name, options, selected):

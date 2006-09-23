@@ -1,0 +1,39 @@
+{% extends "admin/confs/base.html" %}
+{% load formtags %}
+
+{% block title %}{% if conf %}Edycja: {{conf.name}}{% else %}Nowa konferencja{% endif %}{% endblock %}
+
+{% block middlepane %}
+<form action="{{basepath}}/save/" method="post">
+<h1>{{conf.name}}</h1>
+<br/>
+
+{% form_input_text "Nazwa" "name" conf.name "huge" %}
+{% form_spacer %}
+{% form_select_date "Data rozpoczêcia" "start_date" conf.start_date %}
+{% form_spacer %}
+{% form_select_date "Data zakonczenia" "end_date" conf.end_date %}
+{% form_spacer %}
+{% form_input_textarea "Opis" "desc" conf.description %}
+{% form_spacer %}
+
+{% form_select "Kontrahent" "contractor" contractors conf.contractor_id %}
+{% form_spacer %}
+
+{% form_select "Obiekt" "hotel" hotels conf.hotel_id %}
+{% form_spacer %}
+
+{% form_select_date "Do kiedy mo¿na siê rejestrowaæ" "reg_deadline" conf.reg_deadline %}
+{% form_spacer %}
+
+{% form_input_text "Cena" "cost" conf.cost "small" %} PLN
+{% form_spacer %}
+
+<div class="button_panel">
+<input type="submit" class="button_submit" value="Zapisz" /> lub <a href="{{basepath}}/{{conf.id}}" class="nav">Anuluj</a>
+</div>
+
+<input type="hidden" name="id" value="{{conf.id}}" />
+</form>
+
+{% endblock %}

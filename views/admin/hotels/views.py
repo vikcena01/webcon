@@ -83,7 +83,7 @@ def edit(request, hotel_id=None):
     vars['hotel_standards'] = HOTEL_STANDARDS
     vars['hotel_types'] = [(1, 'Konferencyjny'), (2, 'Noclegowy')]
     vars['countries'] = [(c.id, c.name) for c in Country.objects.order_by('name')]
-    vars['hotels'] = Hotel.objects.all().order_by('name')
+#    vars['hotels'] = Hotel.objects.all().order_by('name')
     if hotel_id:
         hotel = get_object_or_404(Hotel, pk=hotel_id)
         vars['hotel'] = hotel

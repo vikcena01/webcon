@@ -8,14 +8,10 @@
 
 <h1>{{conf.name}}</h1>
 <h2>{{conf.start_date}} - {{conf.end_date}}</h2>
+{{conf.hotel.name}} - {{conf.hotel.address.city}}, {{conf.hotel.address.country.name}}<br/>
 {% if not conf.active %}(<span class="conf_closed">konferencja nieotwarta</span>){% else %}(<span class="conf_open">konferencja otwarta</span>){% endif %}<br/>
 <br/>
 {{conf.description|linebreaks}}
-<br/>
-
-<b>Hotel:</b><br/>
-&nbsp; &nbsp; {{conf.hotel.name}}<br/>
-&nbsp; &nbsp; {{conf.hotel.address.city}}, {{conf.hotel.address.country.name}}<br/>
 <br/>
 
 <b>Cena:</b> {{conf.cost}} PLN<br/>

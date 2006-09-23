@@ -2,10 +2,8 @@
 
 {% block menu %}
 <div id="page_menu">
-<div class="menuitem"><a class="{% block menu_data %}{% endblock %}" href="/index/">Moje dane</a></div>
-<div class="menuitem"><a class="{% block menu_dwell %}{% endblock %}" href="/dwell/">Zakwaterowanie</a></div>
-<div class="menuitem"><a class="{% block menu_addons %}{% endblock %}" href="/index/">Opcje dodatkowe</a></div>
-<br/>&nbsp;
+<a class="{% block menu_data %}{% endblock %}" href="/index/">Moje dane</a> |
+<a class="{% block menu_dwell %}{% endblock %}" href="/dwell/">Zakwaterowanie</a> |
+<a class="{% block menu_addons %}{% endblock %}" href="/index/">Opcje dodatkowe</a>
 </div>
-<br/>
 {% endblock %}

@@ -19,7 +19,7 @@ def login(request):
             if id >= 0:
                 user = User.objects.get(pk=id)
                 request.session['user'] = user
-                return HttpResponseRedirect("/entrant/")
+                return HttpResponseRedirect("/user/")
 
             return render_to_response('auth/auth_login.html', {'POST': request.POST, 'error': 'Niepoprawny login i/lub has³o!'})
         else:

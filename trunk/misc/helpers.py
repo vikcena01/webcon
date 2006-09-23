@@ -37,3 +37,24 @@ def get_list_params(request, mod):
     sort_order = {'asc':'', 'desc':'-'}[request.session.get(mod+'_sort_order', "asc")]
     
     return (page, sort_by, sort_order, words)
+
+
+
+integrity_errors = {
+    'ch_conf_dates': 'Poda³e¶ niepoprawny termin konferencji!',
+    'ch_conf_deadline': 'Termin rejestracji nie mo¿e przekraczaæ daty rozpoczêcia konferencji!',
+    'ch_conf_cost': 'Cena konferencji nie mo¿e byæ ujemna!',
+    'tg_activate_check_update':'Program konferencji jest pusty. Aktywacja wstrzymana',
+    'tg_block_conf_update':'Konferencja trwa lub zakoñczyla siê. Aktualizacja danych niemo¿liwa',
+    'ch_unique_admin': 'Admin o podanym loginie juz istnieje!',
+}
+
+def integrity_get_message(exc):
+    for err in integrity_errors.keys():
+        if err in exc:
+            return integrity_errors[err]
+    return 'Wyst±pi³ nieznany b³±d. Spróbuj ponownie.'+exc
+    
+    
+    
+    

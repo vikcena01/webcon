@@ -31,6 +31,7 @@
 {% if msg_ok %}<div class="msg_ok">{{msg_ok}}</div>{% endif %}
 
 {% block toolbar %}{% endblock %}
+{% block message %}{% if error_msg %}<div class="error_msg">{{error_msg}}</div>{% endif %}{% if error_msg %}<div class="success_msg">{{success_msg}}</div>{% endif %}{% endblock %}
 {% block middlepane %}Difoltowa zawarto¶æ
 nigdy nie powinna sie pokazac!{% endblock %}
 </div>

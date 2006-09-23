@@ -466,3 +466,15 @@ div.bb {
 	width: 300px;
 	text-align: right;
 }
+
+div.error_msg {
+	color: red;
+	font-weight: bold;
+	margin: 10px 0px 15px 0;
+}
+
+div.success_msg {
+	color: green;
+	font-weight: bold;
+	margin-bottom: 1px;
+}

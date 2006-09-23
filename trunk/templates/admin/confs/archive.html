@@ -11,7 +11,7 @@ Archiwalne konferencje:<br/>
 <br/>
 
 <table class="list">
-<tr><th>Lp.</th><th>Termin</th><th>Nazwa</th><th>Miasto, Kraj</th></tr>
+<tr><th>Lp.</th><th>Termin</th><th>Nazwa</th><th>Obiekt</th></tr>
 {% for c in confs %}
 <tr>
 <td class="lp">{{forloop.counter}}</td>
@@ -19,7 +19,7 @@ Archiwalne konferencje:<br/>
 <td>
 <a href="{{c.get_admin_overview_url}}">{{c.name}}</a>
 </td>
-<td>{{c.address.city}}, {{c.address.country.name}}</td>
+<td>{{c.hotel.name}}</td>
 </tr>
 {% endfor %}
 </table>

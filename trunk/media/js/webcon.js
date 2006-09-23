@@ -21,3 +21,11 @@ function genPass() {
 	$('id_pass2').value = newpass;
 	$('id_gen_pass').innerHTML = 'wygenerowane haslo: '+newpass;
 }
+
+function confirmOpen(what) {
+	return confirm('Czy na pewno chcesz otworzyc '+what+'?');
+}
+
+function confirmClose(what) {
+	return confirm('Czy na pewno chcesz zamknac '+what+'?');
+}

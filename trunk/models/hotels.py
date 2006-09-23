@@ -9,9 +9,8 @@ class Hotel(models.Model):
     description = models.TextField()
     type = models.SmallIntegerField()
     address = models.ForeignKey(Address)
-    # city = models.CharField(maxlength=64)
-    # address = models.CharField(maxlength=256)
     standard = models.SmallIntegerField()
+
     class Meta:
         db_table = 'hotel'
         

@@ -11,15 +11,15 @@ Aktualnie odbywaj±ce siê konferencje:<br/>
 {% if actual_confs|length %}
 <br/>
 <table class="list">
-<tr><th>Lp.</th><th>Termin</th><th>Nazwa</th><th>Miasto, Kraj</th></tr>
+<tr><th>Lp.</th><th>Termin</th><th>Nazwa</th><th>Obiekt</th></tr>
 {% for c in actual_confs %}
 <tr>
-<td class="lp">{{forloop.counter}}</td>
+<td class="lp">{% if c.active %}<img src="/m/gfx/tick.gif" border="0" width="16" height="16"/>&nbsp;{% endif %}{{forloop.counter}}</td>
 <td>{{c.start_date}} - {{c.end_date}}</td>
 <td>
 <a href="{{basepath}}/{{c.id}}">{{c.name}}</a>
 </td>
-<td>{{c.address.city}}, {{c.address.country.name}}</td>
+<td>{{c.hotel.name}}</td>
 </tr>
 {% endfor %}
 </table>
@@ -32,15 +32,15 @@ Aktualnie odbywaj±ce siê konferencje:<br/>
 Nadchodz±ce konferencje:<br/>
 <br/>
 <table class="list">
-<tr><th>Lp.</th><th>Termin</th><th>Nazwa</th><th>Miasto, Kraj</th></tr>
+<tr><th>Lp.</th><th>Termin</th><th>Nazwa</th><th>Obiekt</th></tr>
 {% for c in comming_confs %}
 <tr>
-<td class="lp">{{forloop.counter}}</td>
+<td class="lp">{% if c.active %}<img src="/m/gfx/tick.gif" border="0" width="16" height="16"/>&nbsp;{% endif %}{{forloop.counter}}</td>
 <td>{{c.start_date}} - {{c.end_date}}</td>
 <td>
 <a href="{{basepath}}/{{c.id}}">{{c.name}}</a>
 </td>
-<td>{{c.address.city}}, {{c.address.country.name}}</td>
+<td>{{c.hotel.name}}</td>
 </tr>
 {% endfor %}
 </table>

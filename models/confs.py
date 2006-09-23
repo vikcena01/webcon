@@ -2,6 +2,7 @@ from django.db import models
 from webcon.models.common import Address
 from webcon.models.hotels import Hotel
 from webcon.models.contrs import Contractor
+from datetime import datetime
 
 # Create your models here.
 
@@ -10,11 +11,11 @@ class Conference(models.Model):
     name = models.CharField(maxlength=256)
     description = models.TextField()
     contractor = models.ForeignKey(Contractor)
-    start_date = models.DateField()
-    end_date = models.DateField()
-    cost = models.FloatField(max_digits=65535, decimal_places=65531)
-    active = models.BooleanField()
-    reg_deadline = models.DateTimeField()
+    start_date = models.DateField(default=datetime.now())
+    end_date = models.DateField(default=datetime.now())
+    cost = models.FloatField(max_digits=65535, decimal_places=65531,default=0)
+    active = models.BooleanField(default=False)
+    reg_deadline = models.DateTimeField(default=datetime.now())
     hotel = models.ForeignKey(Hotel)
     
     class Meta:

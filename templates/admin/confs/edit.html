@@ -33,7 +33,7 @@
 <input type="submit" class="button_submit" value="Zapisz" /> lub <a href="{{basepath}}/{{conf.id}}" class="nav">Anuluj</a>
 </div>
 
-<input type="hidden" name="id" value="{{conf.id}}" />
+<input type="hidden" name="id" value="{{conf.id|default:" "}}" />
 </form>
 
 {% endblock %}

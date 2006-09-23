@@ -1,4 +1,5 @@
 {% extends "admin/admins/base.html" %}
+{% load formtags %}
 
 {% block title %}{% if admin %}Edycja: {{admin.login}}{% else %}Nowy administrator{% endif %}{% endblock %}
 
@@ -6,20 +7,13 @@
 <form action="{{basepath}}/save/" method="post">
 <h1>{{admin.login}}</h1>
 <br/>
-<label for="id_login">Login:</label><br>
-<input type="text" name="login" id="id_login" class="input_standard input_width_big" value="{{ admin.login }}">
 
-<div class="form_spacer"></div>
-
-<label for="id_fullname">Pe軟a nazwa (np. Imie Nazwisko):</label><br>
-<input type="text" name="fullname" id="id_fullname" class="input_standard input_width_big" value="{{ admin.fullname }}">
-
-<div class="form_spacer"></div>
-
-<input type="checkbox" name="can_write" value="1" id="id_can_write" {% if admin.can_write %}checked="checked"{% endif %}/>&nbsp; 
-<label for="id_can_write">Uprawniony do edycji tre軼i</label>
-
-<div class="form_spacer"></div>
+{% form_input_text "Login" "login" admin.login %}
+{% form_spacer %}
+{% form_input_text "Pe軟a nazwa (np. Imie Nazwisko)" "fullname" admin.fullname %}
+{% form_spacer %}
+{% form_input_check "Uprawniony do edycji tre軼i" "can_write" admin.can_write %}
+{% form_spacer %}
 
 {% if admin %}
 <br/>
@@ -27,16 +21,10 @@ Wype軟ij poni窺ze pola tylko wtedy gdy chcesz zmienic has這!<br/>
 <br/>
 {% endif %}
 
-<label for="id_pass1">Has這:</label><br>
-<input type="password" name="pass1" id="id_pass1" class="input_standard input_width_big" value="">
-&nbsp; <a href="#" onclick="genPass(); return false;" class="nav">Generuj</a> &nbsp; <span id="id_gen_pass"></span>
-
-<div class="form_spacer"></div>
-
-<label for="id_pass2">Has這 powt鏎zone:</label><br>
-<input type="password" name="pass2" id="id_pass2" class="input_standard input_width_big" value="">
-
-<div class="form_spacer"></div>
+{% form_input_passwd "Has這" "pass1" "pass2" %}
+{% form_spacer %}
+{% form_input_passwd "Has這 powt鏎zone" "pass2" %}
+{% form_spacer %}
 
 <div class="button_panel">
 <input type="submit" class="button_submit" value="Zapisz" /> lub <a href="{{basepath}}/{{admin.id}}" class="nav">Anuluj</a>

@@ -1,4 +1,5 @@
 {% extends "admin/users/base.html" %}
+{% load formtags %}
 
 {% block title %}{% if user %}Edycja: {{user.fullname}}{% else %}Nowy u¿ytkownik{% endif %}{% endblock %}
 
@@ -6,20 +7,30 @@
 <form action="{{basepath}}/save/" method="post">
 <h1>{{user.fullname}}</h1>
 <br/>
-<label for="id_login">Login:</label><br>
-<input type="text" name="login" id="id_login" class="input_standard input_width_big" value="{{ admin.login }}">
 
-<div class="form_spacer"></div>
+{% form_input_text "Imiê" "firstname" user.firstname %}
+{% form_spacer %}
+{% form_input_text "Nazwisko" "lastname" user.lastname %}
+{% form_spacer %}
+{% form_input_text "E-mail" "email" user.email %}
+{% form_spacer %}
+{% form_input_text "Telefon" "phone" user.phone "small" %}
+{% form_spacer %}
+{% form_select_date "Data urodzenia" "birthdate" user.birthdate %}
+{% form_spacer %}
+{% form_select "P³eæ" "sex" sexes user.sex %}
+{% form_spacer %}
 
-<label for="id_fullname">Pe³na nazwa (np. Imie Nazwisko):</label><br>
-<input type="text" name="fullname" id="id_fullname" class="input_standard input_width_big" value="{{ admin.fullname }}">
-
-<div class="form_spacer"></div>
-
-<input type="checkbox" name="can_write" value="1" id="id_can_write" {% if admin.can_write %}checked="checked"{% endif %}/>&nbsp; 
-<label for="id_can_write">Uprawniony do edycji tre¶ci</label>
-
-<div class="form_spacer"></div>
+{% form_spacer %}
+{% form_input_text "Ulica" "address" user.address.address %}
+{% form_spacer %}
+{% form_input_text "Miasto" "city" user.address.city %}
+{% form_spacer %}
+{% form_input_text "Kod pocztowy" "zipcode" user.address.zipcode "small" %}
+{% form_spacer %}
+{% form_select "Kraj" "country" countries user.address.country_id %}
+{% form_spacer %}
+{% form_spacer %}
 
 {% if user %}
 <br/>
@@ -27,19 +38,13 @@ Wype³nij poni¿sze pola tylko wtedy gdy chcesz zmienic has³o!<br/>
 <br/>
 {% endif %}
 
-<label for="id_pass1">Has³o:</label><br>
-<input type="password" name="pass1" id="id_pass1" class="input_standard input_width_big" value="">
-&nbsp; <a href="#" onclick="genPass(); return false;" class="nav">Generuj</a> &nbsp; <span id="id_gen_pass"></span>
-
-<div class="form_spacer"></div>
-
-<label for="id_pass2">Has³o powtórzone:</label><br>
-<input type="password" name="pass2" id="id_pass2" class="input_standard input_width_big" value="">
-
-<div class="form_spacer"></div>
+{% form_input_passwd "Has³o" "pass1" "pass2" %}
+{% form_spacer %}
+{% form_input_passwd "Has³o powtórzone" "pass2" %}
+{% form_spacer %}
 
 <div class="button_panel">
-<input type="submit" class="button_submit" value="Zapisz" /> lub <a href="{% if user %}{{user.get_admin_overview_url}}{% else %}{{basepath}}{% endif %}" class="nav">Anuluj</a>
+<input type="submit" class="button_submit" value="Zapisz" /> lub <a href="{% if user %}{{basepath}}/{{user.id}}{% else %}{{basepath}}{% endif %}" class="nav">Anuluj</a>
 </div>
 
 <input type="hidden" name="id" value="{{user.id}}" />

@@ -9,11 +9,11 @@ elements_per_page = 25
 vars = { 'basepath': BASEPATH }
 
 HOTEL_STANDARDS = [
-   {'value':1, 'stars':'*'},
-   {'value':2, 'stars':'**'},
-   {'value':3, 'stars':'***'},
-   {'value':4, 'stars':'****'},
-   {'value':5, 'stars':'*****'}
+   (1, '*'),
+   (2, '**'),
+   (3, '***'),
+   (4, '****'),
+   (5, '*****')
 ]
 
 @admin_can_read
@@ -81,7 +81,7 @@ def overview(request, hotel_id):
 @admin_can_write
 def edit(request, hotel_id=None):
     vars['hotel_standards'] = HOTEL_STANDARDS
-    vars['countries'] = Country.objects.order_by('name')
+    vars['countries'] = [(c.id, c.name) for c in Country.objects.order_by('name')]
     vars['hotels'] = Hotel.objects.all().order_by('name')
     if hotel_id:
         hotel = get_object_or_404(Hotel, pk=hotel_id)

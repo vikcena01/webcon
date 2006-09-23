@@ -1,4 +1,5 @@
 {% extends "admin/users/base.html" %}
+{% load formtags %}
 
 {% block title %}Lista u¿ytkowników{% endblock %}
 {% block onload %}$('id_search_keyword').focus(){% endblock %}
@@ -12,10 +13,10 @@
 <tr>
 <td class="lp">{{offset|add:forloop.counter}}</td>
 <td>
-<a href="{{basepath}}/{{u.id}}">{{u.fullname}}</a>
+<a href="{{basepath}}/{{u.id}}">{% if not u.active %}<span class="admin_name_blocked">{{u.fullname}}</span>{% else %}{{u.fullname}}{% endif %}</a>
 </td>
 <td class="phone">{{u.phone}}</td>
-<td class="email"><a href="mailto:{{u.email}}"">{{u.email}}</a></td>
+<td class="email">{% email u.email %}</td>
 </tr>
 {% endfor %}
 </table>

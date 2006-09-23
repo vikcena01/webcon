@@ -1,4 +1,5 @@
 {% extends "admin/hotels/base.html" %}
+{% load formtags %}
 
 {% block title %}{% if hotel %}Edycja: {{hotel.name}}{% else %}Nowy hotel{% endif %}{% endblock %}
 
@@ -6,42 +7,23 @@
 <form action="{{basepath}}/save/" method="post">
 <h1>{{hotel.name}}</h1>
 <br/>
-<label for="id_name">Nazwa:</label><br>
-<input type="text" name="name" id="id_name" class="input_standard input_width_big" value="{{ hotel.name }}">
 
-<div class="form_spacer"></div>
+{% form_input_text "Nazwa" "name" hotel.name %}
+{% form_spacer %}
+{% form_select "Standard" "standard" hotel_standards hotel.standard %}
+{% form_spacer %}
 
-<label for="id_standard">Standard:</label><br>
-<select name="standard" id="id_standard">
-{% for standard in hotel_standards %}
-<option value="{{standard.value}}" {% ifequal standard.value hotel.standard %}selected{% endifequal %}>{{standard.stars}}</option>
-{% endfor %}
-</select>
+{% form_spacer %}
+{% form_input_text "Ulica" "address" hotel.address.address %}
+{% form_spacer %}
+{% form_input_text "Miasto" "city" hotel.address.city %}
+{% form_spacer %}
+{% form_select "Kraj" "country" countries hotel.address.country_id %}
+{% form_spacer %}
+{% form_spacer %}
 
-<div class="form_spacer"></div>
-
-<label for="id_city">Miasto:</label><br>
-<input type="text" name="city" id="id_city" class="input_standard width_big" value="{{ hotel.address.city }}">
-
-<div class="form_spacer"></div>
-
-<label for="id_address">Adres:</label><br>
-<input type="text" name="address" id="id_address" class="input_standard width_huge" value="{{ hotel.address.address }}">
-
-<div class="form_spacer"></div>
-<label for="id_country">Kraj:</label><br>
-<select name="country" id="id_country">
-{% for country in countries %}
-<option value="{{country.id}}" {% ifequal country.id hotel.address.country_id %}selected{% endifequal %}>{{country.name}}</option>
-{% endfor %}
-</select>
-
-<div class="form_spacer"></div>
-
-<label for="id_desc">Opis:</label><br>
-<textarea name="desc" id="id_desc" class="description">{{ hotel.description }}</textarea>
-
-<div class="form_spacer"></div>
+{% form_input_textarea "Opis" "desc" hotel.description %}
+{% form_spacer %}
 
 <div class="button_panel">
 <input type="submit" class="button_submit" value="Zapisz" /> lub <a href="{{basepath}}/{{hotel.id}}" class="nav">Anuluj</a>

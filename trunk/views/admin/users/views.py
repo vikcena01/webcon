@@ -1,6 +1,7 @@
 # Create your views here.
 
 from webcon.imports import *
+from datetime import datetime
 
 #from django.db import IntegrityError
 from psycopg import IntegrityError
@@ -12,7 +13,8 @@ SUBMODULE = 'users'
 TPLPATH = MODULE+'/'+SUBMODULE
 BASEPATH = '/'+MODULE+'/'+SUBMODULE
 elements_per_page = 25
-vars = { 'basepath': BASEPATH }
+vars = { 'basepath': BASEPATH, 'sexes': (('m', 'Mê¿czyzna'), ('f', 'Kobieta')) }
+
 
 
 @admin_can_write
@@ -86,6 +88,7 @@ def edit(request, user_id=None):
         user = None
     
     vars['user'] = user
+    vars['countries'] = [(c.id, c.name) for c in Country.objects.order_by('name')]
    
     return render(TPLPATH+'/edit.html', request, vars)
 
@@ -100,10 +103,24 @@ def save(request):
         else:
             user = User()
 #        return HttpResponse(str(request.POST))
-        user.fullname = request.POST['fullname']
-        user.login = request.POST['login']
-#        user.role = request.POST['role']
-        user.passwd_hash = passwd_hash = md5.new(request.POST['pass1']).hexdigest()
+        user.firstname = request.POST['firstname']
+        user.lastname = request.POST['lastname']
+        user.email = request.POST['email']
+        user.phone = request.POST['phone']
+        user.sex = request.POST['sex']
+        
+        user.birthdate = datetime(int(request.POST['birthdate_year']), int(request.POST['birthdate_month']), int(request.POST['birthdate_day']))
+        
+        user.address.address = request.POST['address']
+        user.address.city = request.POST['city']
+        user.address.zipcode = request.POST['zipcode']
+        user.address.country_id = request.POST['country']
+        user.address.save()
+        
+        passwd = request.POST['pass1']
+        if passwd != "":
+            passwd_hash = md5.new(passwd).hexdigest()
+            user.passwd_hash = passwd_hash
         try:
             user.save()
         except IntegrityError:
@@ -118,3 +135,16 @@ def delete(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     user.delete()
     return HttpResponseRedirect(BASEPATH)
+
+
+def block(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    user.active = False
+    user.save()
+    return HttpResponseRedirect(BASEPATH+"/%s" % user.id)
+
+def activate(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    user.active = True
+    user.save()
+    return HttpResponseRedirect(BASEPATH+"/%s" % user.id)

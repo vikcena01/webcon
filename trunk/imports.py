@@ -15,3 +15,5 @@ from webcon.models.users import User
 
 from webcon.misc.decorators import admin_can_read, admin_can_write
 from webcon.misc.helpers import render, get_list_params
+from webcon.misc.tags import current_time
+# from django.template.Library import *

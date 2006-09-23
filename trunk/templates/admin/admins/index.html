@@ -13,7 +13,7 @@
 <tr>
 <td class="lp">{{forloop.counter}}</td>
 <td>
-<a href="{{basepath}}/{{a.id}}">{{a.login}}</a>
+<a href="{{basepath}}/{{a.id}}">{% if not a.active %}<span class="admin_name_blocked">{{a.login}}{% else %}{{a.login}}{% endif %}</a>
 </td>
 <td>{% if not a.active %}<span class="admin_name_blocked">{{a.fullname}}</span>{% else %}{{a.fullname}}{% endif %}</td>
 </tr>

@@ -1,21 +1,36 @@
 {% extends "admin/users/base.html" %}
+{% load formtags %}
 
-{% block title %}Podgl±d: {{admin.login}}{% endblock %}
+{% block title %}Podgl±d: {{user.fullname}}{% endblock %}
 
 {% block middlepane %}
 
 <h1>{{user.fullname}}</h1>
+ur. {{user.birthdate}}<br/>
 <br/>
-{{admin.tmp_role}}<br/>
-Login: {{admin.login}}<br/>
+{% if not user.active %}(<span class="admin_blocked">konto zablokowane</span>)<br/><br/>{% endif %}
+Telefon: {{ user.phone|default:"brak" }}<br/>
+E-mail: {% email user.email %}<br/>
 <br/>
-Ostatnie udane logowanie: {{admin.last_good_login|date:"jS F Y H:i"|default:"brak"}}<br/>
-Ostatnie nieudane logowanie: {{admin.last_bad_login|date:"jS F Y H:i"|default:"brak"}}<br/>
+Adres:<br/>
+{{user.address.address}}<br/>
+{{user.address.city}}, {{user.address.zipcode}}<br/>
+{{user.address.country.name}}<br/>
 <br/>
 
+Ostatnie udane logowanie: {{user.last_good_login|date:"jS F Y H:i"|default:"brak"}}<br/>
+Ostatnie nieudane logowanie: {{user.last_bad_login|date:"jS F Y H:i"|default:"brak"}}<br/>
+<br/>
+Zarejestrowany: {{user.registered}}<br/>
+<br/>
 <br/>
 <a href="{{basepath}}/{{user.id}}/edit" style="float: left" class="nav">Edytuj</a> 
-<a href="{{basepath}}/{{user.id}}/del" style="float: left" class="nav" onclick="return confirmDelete('u¿ytkownika {{user.fullname}}')">Usuñ</a>
-<a href="{{basepath}}" class="nav" style="float: right;">Wróæ</a>
+{% if user.active %}
+<a href="{{basepath}}/{{user.id}}/block" style="float: left" class="nav" onclick="return confirmBlock('u¿ytkownika {{user.login}}')">Zablokuj</a>
+{% else %}
+<a href="{{basepath}}/{{user.id}}/activate" style="float: left" class="nav" onclick="return confirmActivate('u¿ytkownika {{user.login}}')">Aktywuj</a>
+{% endif %}
+<a href="{{basepath}}/{{user.id}}/del" style="float: left" class="nav" onclick="return confirmDelete('u¿ytkownika {{user.login}}')">Usuñ</a>
+<a href="{{basepath}}/" class="nav" style="float: right;">Wróæ</a>
 <br/>
 {% endblock %}

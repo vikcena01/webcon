@@ -4,7 +4,7 @@
 {% block onload %}$('id_search_keyword').focus(){% endblock %}
 
 {% block middlepane %}
-<a href="{{basepath}}/new" class="nav">Dodaj</a><br/>
+<a href="{{basepath}}/new" class="nav">Dodaj</a><a href="/admin/confs/archive/" class="nav">Archiwalne konferencje</a><br/>
 <br/>
 
 Aktualnie odbywaj±ce siê konferencje:<br/>
@@ -19,7 +19,7 @@ Aktualnie odbywaj±ce siê konferencje:<br/>
 <td>
 <a href="{{basepath}}/{{c.id}}">{{c.name}}</a>
 </td>
-<td>{{c.hotel.name}}</td>
+<td><a href="/admin/hotels/{{c.hotel.id}}">{{c.hotel.name}}</a></td>
 </tr>
 {% endfor %}
 </table>
@@ -40,7 +40,7 @@ Nadchodz±ce konferencje:<br/>
 <td>
 <a href="{{basepath}}/{{c.id}}">{{c.name}}</a>
 </td>
-<td>{{c.hotel.name}}</td>
+<td><a href="/admin/hotels/{{c.hotel.id}}">{{c.hotel.name}}</a></td>
 </tr>
 {% endfor %}
 </table>
@@ -48,5 +48,5 @@ Nadchodz±ce konferencje:<br/>
 <br/>
 
 
-<a href="/admin/confs/archive/" class="nav">Zobacz poprzednie konferencje</a>
+
 {% endblock %}

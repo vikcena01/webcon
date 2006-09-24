@@ -1,0 +1,33 @@
+{% extends "admin/confs/base_per_conf.html" %}
+
+{% block title %}Lista konferencji{% endblock %}
+{% block onload %}$('id_search_keyword').focus(){% endblock %}
+
+{% block middlepane %}
+<h1>{{conf.name}}</h1>
+<br/>
+Program konferencji:<br/>
+{% if events|length %}
+<br/>
+<table class="list">
+<tr><th>Lp.</th><th>Termin</th><th>Wydarzenie</th><th> &nbsp;</th></tr>
+{% for e in events %}
+<tr>
+<td class="lp" rowspan="2">{{forloop.counter}}</td>
+<td class="email">{{e.time}}</td>
+<td>
+<a href="{{confpath}}/events/{{e.id}}">{{e.name}}</a>
+</td>
+<td width="20"><a href="{{confpath}}/events/{{e.id}}/del" class="nav"  onclick="return confirmDelete('wydarzenie {{e.name}}')">Usuñ</a></td>
+</tr>
+<tr><td colspan="3" style="font-style: italic;">{{e.description}}</td></tr>
+{% endfor %}
+</table>
+{% else %}
+&nbsp;&nbsp;Brak wydarzeñ.
+{% endif %}
+<br/>
+<br/>
+<a href="{{confpath}}/events/new/" class="nav">Dodaj wydarzenie</a>
+<br/><br/>
+{% endblock %}

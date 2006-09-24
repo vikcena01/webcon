@@ -46,6 +46,17 @@ def form_select_date(label, prefix, date, startyear=1940, endyear=datetime.now()
     return out
 
 
+def form_select_time(label, prefix, time, startyear=1940, endyear=datetime.now().year+5):
+    hours = [(x ,"%02d" % (x)) for x in range(24)]
+    minutes = [(x, "%02d" % (x)) for x in range(60)]
+    
+    out = '<label >%s:</label><br>\n' % label
+    # dzien
+    out += form_select_without_label(prefix+'_hour', hours, time.hour) + '&nbsp;'
+    out += form_select_without_label(prefix+'_minute', minutes, time.minute) + '&nbsp;'
+    return out
+
+
 def form_input_check(label, name, checked):
     out = '<input type="checkbox" name="%s" value="1" id="id_%s"' % (name, name)
     if checked:
@@ -78,6 +89,7 @@ register.simple_tag(form_spacer)
 register.simple_tag(form_input_text)
 register.simple_tag(form_select)
 register.simple_tag(form_select_date)
+register.simple_tag(form_select_time)
 register.simple_tag(form_input_check)
 register.simple_tag(form_input_passwd)
 register.simple_tag(form_input_textarea)

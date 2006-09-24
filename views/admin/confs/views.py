@@ -7,6 +7,7 @@ MODULE = 'admin'
 SUBMODULE = 'confs'
 TPLPATH = MODULE+'/'+SUBMODULE
 BASEPATH = '/'+MODULE+'/'+SUBMODULE
+elements_per_page = 25
 
 
 @admin_can_read
@@ -21,10 +22,48 @@ def index(request):
 
 @admin_can_read
 def archive(request):
-    archive_confs = ArchiveConference.objects.all().order_by('-end_date')
     vars = { 'basepath': BASEPATH }
-    vars['confs'] = archive_confs
+
+    page, sort_by, sort_order, words = get_list_params(request, 'archive')
+
+    # filtrowanie 
+    
+    if words:
+        cond = Q()
+        for w in words:
+            subcond = Q()
+            subcond |= Q(name__icontains=w)
+            subcond |= Q(hotel__name__icontains=w)
+            cond &= subcond
+        q = ArchiveConference.objects.filter(cond)
+    else:
+        q = ArchiveConference.objects.all()
+
+    # pager
+    
+    count = q.count()
+    pages = count / elements_per_page
+    offset = page * elements_per_page
+    if count % elements_per_page > 0:
+        pages += 1
+
+    vars['offset'] = offset
+    if pages > 1:
+        vars['pages'] = range(pages)
+    else:
+        vars['pages'] = None
+    vars['page'] = page
+   
+    # sortowanie
+    
+    q = q.order_by('-end_date')
+   
+    # pobranie danych
+    
+    confs = q[offset:offset+elements_per_page]
+    vars['confs'] = confs
     return render(TPLPATH+'/archive.html', request, vars)
+    
 
 @admin_can_read
 def overview(request, conf_id):
@@ -54,7 +93,7 @@ def open(request, conf_id):
 
 def render_edit(request,conf,vars={ 'basepath': BASEPATH } ):
     contractors = [(c.id, c.name) for c in Contractor.objects.all().order_by('name')]
-    hotels = [(h.id, h.name) for h in Hotel.objects.all().order_by('name')]
+    hotels = [(h.id, h.name) for h in Hotel.objects.all().filter(type=1).order_by('name')]
 
     vars['conf'] = conf
     vars['contractors'] = contractors
@@ -112,3 +151,65 @@ def delete(request, conf_id):
     conf = get_object_or_404(Conference, pk=conf_id)
     conf.delete()
     return HttpResponseRedirect(BASEPATH)
+
+
+
+@admin_can_read
+def events(request, conf_id):
+    conf = get_object_or_404(Conference, pk=conf_id)
+    vars = { 'basepath': BASEPATH }
+    vars['confpath'] = BASEPATH+'/%s' % conf.id
+    vars['conf'] = conf
+    vars['events'] = Event.objects.filter(conference=conf).order_by('time')
+    return render(TPLPATH+'/events.html', request, vars)
+
+
+def render_event_edit(request, conf_id, event, vars = { 'basepath': BASEPATH }):       
+    vars['confpath'] = BASEPATH+'/%s' % conf_id
+    vars['event'] = event
+    return render(TPLPATH+'/event_edit.html', request, vars)
+
+
+def event_edit(request, conf_id, event_id=None):
+    if event_id:
+        event = Event.objects.get(pk=event_id)
+    else:
+        event = Event()
+#        event.time = datetime
+    return render_event_edit(request, conf_id, event)
+
+
+@admin_can_write
+def event_save(request, conf_id):
+    if request.method == 'POST':
+        if request.POST['id'].strip():
+            event = get_object_or_404(Event, pk=request.POST['id'])
+        else:
+            event = Event()
+            event.conference_id = conf_id
+            
+        event.name = request.POST['name']
+        event.description = request.POST['desc']
+        event.place = request.POST['place']
+        event.time = datetime(int(request.POST['date_year']), int(request.POST['date_month']), int(request.POST['date_day']), int(request.POST['time_hour']), int(request.POST['time_minute']))    
+        
+        try:
+            event.save()
+        except (IntegrityError, ProgrammingError), e:
+            from django.db import connection
+            connection._rollback()
+            vars = { 'basepath': BASEPATH}
+            vars['error_msg'] = integrity_get_message(str(e))
+            return render_event_edit(request,conf_id,event,vars)
+            
+        return HttpResponseRedirect(BASEPATH+"/%s/events" % conf_id)
+    else:
+        return HttpResponseRedirect(BASEPATH+"/%s/events" % conf_id)
+
+
+@admin_can_write
+def event_delete(request, conf_id,event_id):
+    event = get_object_or_404(Event, pk=event_id)
+    event.delete()
+    return HttpResponseRedirect(BASEPATH+"/%s/events" % conf_id)
+

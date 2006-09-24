@@ -86,7 +86,15 @@ def edit(request, hotel_id=None):
 #    vars['hotels'] = Hotel.objects.all().order_by('name')
     if hotel_id:
         hotel = get_object_or_404(Hotel, pk=hotel_id)
-        vars['hotel'] = hotel
+    else:
+        hotel = Hotel()
+        hotel.address = Address()
+        # hotel.address.address = ""
+        # hotel.address.zipcode = ""
+        # hotel.address.city = ""
+        # hotel.address.country = Country()
+
+    vars['hotel'] = hotel
    
     return render(TPLPATH+'/edit.html', request, vars)
 

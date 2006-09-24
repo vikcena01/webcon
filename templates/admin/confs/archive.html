@@ -4,6 +4,7 @@
 {% block onload %}$('id_search_keyword').focus(){% endblock %}
 
 {% block middlepane %}
+{% include "admin/confs/toolbar_arch.html" %}
 
 Archiwalne konferencje:<br/>
 {% if confs|length %}
@@ -26,6 +27,8 @@ Archiwalne konferencje:<br/>
 &nbsp;&nbsp;Brak.
 {% endif %}
 <br/>
+{% include "pager.html" %}
+
 <br/>
 <a href="/admin/confs/" class="nav">Wróæ</a>
 {% endblock %}

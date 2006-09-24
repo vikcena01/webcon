@@ -1,3 +1,5 @@
-<a href="{{confpath}}" class="nav">Dane ogólne</a><a href="{{confpath}}/events" class="nav">Program</a><a href="{{confpath}}/extras" class="nav">Opcje dodatkowe</a><a href="{{confpath}}/entrants" class="nav">Uczestnicy</a>
-<br/>
-<br/>
+<div class="bb"><form action="{{basepath}}/archive/" method="POST">Filtr: 
+<input type="text" class="input_standard" name="search_keyword" id="id_search_keyword" value="{{request.session.archive_search_keyword}}"> 
+<input type="submit" name="s" value="&raquo;" class="button_submit"></form></div>
+<br/><br/>
+

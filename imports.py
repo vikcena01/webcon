@@ -10,6 +10,7 @@ from webcon.models.hotels import Hotel
 from webcon.models.common import Address,Country
 from webcon.models.contrs import Contractor
 from webcon.models.confs import Conference, ActualConference, CommingConference, ArchiveConference
+from webcon.models.confs import Event, Extra
 from webcon.models.admins import Admin
 from webcon.models.users import User
 

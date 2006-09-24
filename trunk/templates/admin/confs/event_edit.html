@@ -1,0 +1,29 @@
+{% extends "admin/confs/base_per_conf.html" %}
+{% load formtags %}
+
+{% block title %}{% if event.name %}Edycja: {{event.name}}{% else %}Nowe wydarzenie{% endif %}{% endblock %}
+
+{% block middlepane %}
+<form action="{{confpath}}/events/save/" method="post">
+<h1>{{event.name}}</h1>
+<br/>
+
+{% form_input_text "Nazwa" "name" event.name "huge" %}
+{% form_spacer %}
+{% form_select_date "Dzieñ" "date" event.time %}
+{% form_spacer %}
+{% form_select_time "Godzina" "time" event.time %}
+{% form_spacer %}
+{% form_input_text "Miejsce" "place" event.place "huge" %}
+{% form_spacer %}
+{% form_input_textarea "Opis" "desc" event.description %}
+{% form_spacer %}
+
+<div class="button_panel">
+<input type="submit" class="button_submit" value="Zapisz" /> lub <a href="{{confpath}}/events" class="nav">Anuluj</a>
+</div>
+
+<input type="hidden" name="id" value="{{event.id|default:" "}}" />
+</form>
+
+{% endblock %}

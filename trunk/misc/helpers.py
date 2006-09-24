@@ -47,6 +47,9 @@ integrity_errors = {
     'tg_activate_check_update':'Program konferencji jest pusty. Aktywacja wstrzymana',
     'tg_block_conf_update':'Konferencja trwa lub zakoñczyla siê. Aktualizacja danych niemo¿liwa',
     'ch_unique_admin': 'Admin o podanym loginie juz istnieje!',
+    'tg_block_conf_delete': 'Konferencja trwa. Usuniêcie niemo¿liwe!',
+    'event_time_insert': 'Niepoprawny czas dla wydarzenia!',
+    'extra_time_insert': 'Niepoprawny czas dla opcji dodatkowej!',
 }
 
 def integrity_get_message(exc):

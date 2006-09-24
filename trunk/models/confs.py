@@ -107,16 +107,18 @@ class Room(models.Model):
 
 class Event(models.Model):
     id = models.AutoField(primary_key=True)
+    conference = models.ForeignKey(Conference)
     name = models.CharField(maxlength=40)
     description = models.TextField()
     place = models.CharField(maxlength=256)
-    time = models.DateTimeField()
+    time = models.DateTimeField(default=datetime.now())
     class Meta:
         db_table = 'event'
 
 
 class Extra(models.Model):
     id = models.AutoField(primary_key=True)
+    conference = models.ForeignKey(Conference)
     name = models.CharField(maxlength=40)
     description = models.TextField()
     place = models.CharField(maxlength=256)

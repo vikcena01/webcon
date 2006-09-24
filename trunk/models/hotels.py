@@ -4,12 +4,12 @@ from webcon.models.common import Address
 # Create your models here.
 
 class Hotel(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(maxlength=64)
-    description = models.TextField()
-    type = models.SmallIntegerField()
+    # id = models.AutoField(primary_key=True)
+    name = models.CharField(maxlength=64,default="")
+    description = models.TextField(default="")
+    type = models.SmallIntegerField(default=1)
     address = models.ForeignKey(Address)
-    standard = models.SmallIntegerField()
+    standard = models.SmallIntegerField(default=1)
 
     class Meta:
         db_table = 'hotel'

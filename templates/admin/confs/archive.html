@@ -4,7 +4,6 @@
 {% block onload %}$('id_search_keyword').focus(){% endblock %}
 
 {% block middlepane %}
-{% include "admin/confs/toolbar.html" %}
 
 Archiwalne konferencje:<br/>
 {% if confs|length %}
@@ -17,9 +16,9 @@ Archiwalne konferencje:<br/>
 <td class="lp">{{forloop.counter}}</td>
 <td>{{c.start_date}} - {{c.end_date}}</td>
 <td>
-<a href="{{c.get_admin_overview_url}}">{{c.name}}</a>
+<a href="{{basepath}}/archive/{{c.id}}">{{c.name}}</a>
 </td>
-<td>{{c.hotel.name}}</td>
+<td><a href="/admin/hotels/{{c.hotel.id}}">{{c.hotel.name}}</a></td>
 </tr>
 {% endfor %}
 </table>

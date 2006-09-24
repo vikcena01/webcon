@@ -6,6 +6,7 @@
 {% block middlepane %}
 <form action="{{basepath}}/save/" method="post">
 <h1>{{user.lastname}} {{user.firstname}}</h1>
+{% if msg %}<h3 style="color:{{msg.color}};">{{msg.content}}</h3>{% endif %}
 <br/>
 
 {% form_input_text "Imiê" "firstname" user.firstname %}
@@ -18,6 +19,8 @@
 {% form_spacer %}
 {% form_select "P³eæ" "sex" sex_types user.sex %}
 {% form_spacer %}
+{% form_select_date "Data urodzenia" "birthdate" user.birthdate %}
+{% form_spacer %}
 
 {% form_spacer %}
 {% form_input_text "Ulica" "address" user.address.address %}
@@ -28,11 +31,11 @@
 {% form_spacer %}
 {% form_spacer %}
 
-{% form_input_text "Stare has³o" "old_passwd" "" %}
+{% form_input_text "Stare has³o" "old_pass" "" %}
 {% form_spacer %}
-{% form_input_text "Nowe has³o" "new_passwd" "" %}
+{% form_input_text "Nowe has³o" "new_pass" "" %}
 {% form_spacer %}
-{% form_input_text "Powtórz has³o" "new_passwd2" "" %}
+{% form_input_text "Powtórz has³o" "new_pass2" "" %}
 {% form_spacer %}
 
 <div class="button_panel">

@@ -1,6 +1,6 @@
 DATABASE_ENGINE = 'postgresql'           # 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
-DATABASE_NAME = 'helix_5'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'helix_5'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'pykonf'         # Not used with sqlite3.
-DATABASE_HOST = 'sql.helix.nazwa.pl'             # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_NAME = 'webcon'             # Or path to database file if using sqlite3.
+DATABASE_USER = 'cyber'             # Not used with sqlite3.
+DATABASE_PASSWORD = ''         # Not used with sqlite3.
+DATABASE_HOST = 'localhost'             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.

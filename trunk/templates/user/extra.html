@@ -1,0 +1,13 @@
+{% extends "base_user.html" %}
+{% load formtags %}
+<table class="list">
+<tr><th>Lp.</th><th>Nazwa</th><th>Opis</th><th>Termin</th></tr>
+{% for ce in conferenceExtras%}
+<tr>
+<td class="lp">{{forloop.counter}}</td>
+<td>{{ ce.name }}</td>
+<td>{{ ce.description}}</td>
+<td>{{ ce.time}}</td>
+</tr>
+{% endfor %}
+</table>

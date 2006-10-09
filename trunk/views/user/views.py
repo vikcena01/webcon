@@ -66,7 +66,28 @@ def save(request):
         
 @user_log
 def extra(request):
-    return
+    user_id = request.session['user'].id
+    
+    entrantUser = get_object_or_404(User, pk=user_id)
+    vars['user'] = entrantUser
+    
+    entrant = get_object_or_404(Entrant, user=entrantUser)
+    
+    entrantExtras  = [(ee) for ee in EntrantExtra.objects.get(entrant=entrant)]
+    vars['entrantExtras'] = entrantExtras
+    
+    conferenceExtras = Extra.objects.get(conference=entrant.conference_id)
+    vars['conferenceExtras'] = conferenceExtras
+    
+    return render(TPLPATH+'/extra.html', request, vars)
+    
+def dwell(request):
+    user_id = request.session['user'].id
+    
+    return null
+    
+    
+    
 
 
 

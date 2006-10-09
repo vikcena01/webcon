@@ -1,16 +1,17 @@
 from django.db import models
 from webcon.models.common import Country
-from webcon.models.confs import Room, Extra
+from webcon.models.confs import Room, Extra, Conference
+from webcon.models.users import User
 
 # Create your models here.
 
 class Entrant(models.Model):
     id = models.AutoField(primary_key=True)
-    user_id = models.ForeignKey(User)
-    conference_id = models.ForeignKey(Conference)
+    user = models.ForeignKey(User)
+    conference = models.ForeignKey(Conference)
     conf_cost = models.FloatField(max_digits=65535, decimal_places=65531)
     arrived = models.DateTimeField()
-    notes = models.TextField()
+    note = models.TextField()
     conf_rating = models.SmallIntegerField()
     conf_comment = models.TextField()
     room = models.ForeignKey(Room)

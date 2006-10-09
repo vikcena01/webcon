@@ -71,13 +71,11 @@ def extra(request):
     entrantUser = get_object_or_404(User, pk=user_id)
     vars['user'] = entrantUser
     
-    entrant = get_object_or_404(Entrant, user=entrantUser)
+    entr = get_object_or_404(Entrant, user=entrantUser)
     
-    entrantExtras  = [(ee) for ee in EntrantExtra.objects.get(entrant=entrant)]
-    vars['entrantExtras'] = entrantExtras
+    vars['entrantExtras'] = EntrantExtra.objects.filter(entrant=entr)
     
-    conferenceExtras = Extra.objects.get(conference=entrant.conference_id)
-    vars['conferenceExtras'] = conferenceExtras
+    vars['conferenceExtras'] = Extra.objects.filter(conference=entr.conference)
     
     return render(TPLPATH+'/extra.html', request, vars)
     

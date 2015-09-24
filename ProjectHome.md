@@ -1,0 +1,1 @@
+Conference Management Webapp written in Python web framework Django.
